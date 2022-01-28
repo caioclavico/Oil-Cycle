@@ -3,6 +3,7 @@ import {
   Flex,
   HStack,
   Image,
+  Link,
   Text,
   useDisclosure,
   useMediaQuery,
@@ -43,14 +44,14 @@ export const Header = () => {
                 onClick={() => history.push("/")}
                 _hover={{ transform: "translateY(-4px)" }}
               >
-                INICIO
+                <Link href="#">INICIO</Link>
               </Text>
               <Text
                 as="button"
                 onClick={() => history.push("/")}
                 _hover={{ transform: "translateY(-4px)" }}
               >
-                QUEM SOMOS
+                <Link href="#about">QUEM SOMOS</Link>
               </Text>
               <Text
                 as="button"

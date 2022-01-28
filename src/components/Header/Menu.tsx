@@ -27,7 +27,7 @@ export const Menu = ({ isOpen, onClose }: IMenuProps) => {
               INICIO
             </Text>
             <Text as="button" onClick={() => history.push("/")}>
-              QUEM SOMOS
+              <a href="#about">QUEM SOMOS</a>
             </Text>
             <Text as="button" onClick={() => history.push("/")}>
               COMO FUNCIONA

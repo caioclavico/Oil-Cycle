@@ -54,7 +54,7 @@ const theme = extendTheme({
       fontSize: "14px",
       fontWeight: "regular",
     },
-    "body-600": {
+    body600: {
       fontSize: "14px",
       fontWeight: "semibold",
     },
@@ -66,6 +66,7 @@ const theme = extendTheme({
   fonts: {
     heading: "Roboto",
     body: "Roboto",
+    bodySecondary: "Fauna One;",
   },
   styles: {
     global: {
