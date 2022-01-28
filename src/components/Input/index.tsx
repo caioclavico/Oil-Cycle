@@ -29,32 +29,37 @@ type inputVariationOptions = {
 const inputVariation: inputVariationOptions = {
   error: "negative.main",
   default: "rgba(25, 245, 154, 0.17)",
-  focus: "primary.main",
+  success: "success.main",
 };
 
 const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   { name, label, icon: Icon, error = null, ...rest },
   ref
 ) => {
+  const [value, setValue] = useState("");
   const [variation, setVariation] = useState("default");
 
   useEffect(() => {
     if (error) {
       return setVariation("error");
     }
-  }, [error]);
+    if (value.length > 1 && !error) {
+      return setVariation("success");
+    }
+  }, [error, value]);
 
   return (
-    <FormControl>
+    <FormControl isInvalid={!!error}>
       {!!label && (
         <FormLabel textTransform="uppercase" mb={0}>
           {label}
         </FormLabel>
       )}
-      <InputGroup>
+      <InputGroup flexDirection="column">
         <ChakraInput
           id={name}
           name={name}
+          onChangeCapture={(e) => setValue(e.currentTarget.value)}
           bgColor="rgba(25, 245, 154, 0.17)"
           boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
           borderColor={inputVariation[variation]}

@@ -1,10 +1,10 @@
-export const button = {
+export const Button = {
   baseStyle: {
     fontFamily: "Roboto",
     fontWeight: "normal",
     padding: "0px 40px",
     fontSize: "24px",
-    w: "100%",
+    borderRadius: "0px",
   },
   sizes: {
     md: {
