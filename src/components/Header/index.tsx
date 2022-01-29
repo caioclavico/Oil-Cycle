@@ -3,6 +3,7 @@ import {
   Flex,
   HStack,
   Image,
+  Link,
   Text,
   useDisclosure,
   useMediaQuery,
@@ -28,6 +29,9 @@ export const Header = () => {
       py="1"
       bg="gray.10"
       boxShadow="0px 1px 4px"
+      position="fixed"
+      width="100%"
+      zIndex="100"
     >
       {isLargerThan769 ? (
         <>
@@ -38,40 +42,20 @@ export const Header = () => {
           </Flex>
           <Flex alignItems="flex-end">
             <HStack spacing="5">
-              <Text
-                as="button"
-                onClick={() => history.push("/")}
-                _hover={{ transform: "translateY(-4px)" }}
-              >
-                INICIO
+              <Text as="button" _hover={{ transform: "translateY(-4px)" }}>
+                <Link href="#">INICIO</Link>
               </Text>
-              <Text
-                as="button"
-                onClick={() => history.push("/")}
-                _hover={{ transform: "translateY(-4px)" }}
-              >
-                QUEM SOMOS
+              <Text as="button" _hover={{ transform: "translateY(-4px)" }}>
+                <Link href="#about-us">QUEM SOMOS</Link>
               </Text>
-              <Text
-                as="button"
-                onClick={() => history.push("/")}
-                _hover={{ transform: "translateY(-4px)" }}
-              >
-                COMO FUNCIONA
+              <Text as="button" _hover={{ transform: "translateY(-4px)" }}>
+                <Link href="#how-it-works">COMO FUNCIONA</Link>
               </Text>
-              <Text
-                as="button"
-                onClick={() => history.push("/")}
-                _hover={{ transform: "translateY(-4px)" }}
-              >
-                CONTATOS
+              <Text as="button" _hover={{ transform: "translateY(-4px)" }}>
+                <Link href="#contact">CONTATOS</Link>
               </Text>
-              <Text
-                as="button"
-                onClick={() => history.push("/register")}
-                _hover={{ transform: "translateY(-4px)" }}
-              >
-                CADASTRO
+              <Text as="button" _hover={{ transform: "translateY(-4px)" }}>
+                <Link href="#register">CADASTRO</Link>
               </Text>
             </HStack>
           </Flex>
