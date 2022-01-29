@@ -4,14 +4,18 @@ import {
   Flex,
   Heading,
   HStack,
+  Link,
   Text,
   useMediaQuery,
   VStack,
 } from "@chakra-ui/react";
+import { useHistory } from "react-router-dom";
 import oilHome from "../../assets/oil-home.jpg";
+import oilBg from "../../assets/oleo2.jpg";
 import { Header } from "../../components/Header";
 
 export const Home = () => {
+  const history = useHistory();
   const [isLargerThan769] = useMediaQuery("(min-width: 768px)");
 
   let responsive = {
@@ -126,11 +130,7 @@ export const Home = () => {
             SOBRE NÓS
           </Heading>
         </Flex>
-        <Flex
-          id="about-us"
-          h="100vh"
-          justifyContent={["flex-start", "flex-start", "center"]}
-        >
+        <Flex h="100vh" justifyContent={["flex-start", "flex-start", "center"]}>
           <Heading
             fontSize={["20px", "30px", "48px"]}
             fontFamily="bodySecondary"
@@ -141,11 +141,7 @@ export const Home = () => {
             COMO FUNCIONA
           </Heading>
         </Flex>
-        <Flex
-          id="about-us"
-          h="100vh"
-          justifyContent={["flex-start", "flex-start", "center"]}
-        >
+        <Flex h="100vh" justifyContent={["flex-start", "flex-start", "center"]}>
           <Heading
             fontSize={["20px", "30px", "48px"]}
             fontFamily="bodySecondary"
@@ -156,11 +152,7 @@ export const Home = () => {
             CONTATO
           </Heading>
         </Flex>
-        <Flex
-          id="about-us"
-          h="100vh"
-          justifyContent={["flex-start", "flex-start", "center"]}
-        >
+        <Flex h="100vh" justifyContent={["flex-start", "flex-start", "center"]}>
           <Heading
             fontSize={["20px", "30px", "48px"]}
             fontFamily="bodySecondary"
@@ -168,7 +160,7 @@ export const Home = () => {
             position="relative"
           >
             <Text id="register" position="absolute" top="-70px"></Text>
-            REGISTRO
+            <Link onClick={() => history.push("/signup")}>REGISTRO</Link>
           </Heading>
         </Flex>
       </Flex>
