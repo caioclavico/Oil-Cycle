@@ -17,7 +17,7 @@ import {
 
 interface InputProps extends ChakraInputProps {
   name: string;
-  label: string;
+  label?: string;
   error?: FieldError | null;
   icon?: IconType;
 }
