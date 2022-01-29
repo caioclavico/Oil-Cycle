@@ -15,8 +15,6 @@ interface IMenuProps {
   onClose: () => void;
 }
 export const Menu = ({ isOpen, onClose }: IMenuProps) => {
-  const history = useHistory();
-
   return (
     <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
       <DrawerOverlay />
