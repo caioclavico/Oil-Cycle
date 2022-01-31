@@ -8,12 +8,12 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { useHistory } from "react-router-dom";
 
 interface IMenuProps {
   isOpen: boolean;
   onClose: () => void;
 }
+
 export const Menu = ({ isOpen, onClose }: IMenuProps) => {
   return (
     <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
