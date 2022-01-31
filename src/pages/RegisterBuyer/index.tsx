@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useRegister } from "../../contexts/RegisterProvider";
 import { useRegisterBuyer } from "../../contexts/RegisterBuyerProvider";
 interface formData {
   name: string;
@@ -14,6 +13,7 @@ interface formData {
   city: string;
   state: string;
   CEP: number;
+  contact: number;
   email: string;
   password: string;
 }
@@ -45,6 +45,7 @@ const RegisterBuyer = () => {
         <input placeholder="Cidade" {...register("city")} />
         <input placeholder="Estado" {...register("state")} />
         <input placeholder="CEP" {...register("CEP")} />
+        <input placeholder="Contato" {...register("contact")} />
         <input placeholder="Email" {...register("email")} />
         <input placeholder="Senha" {...register("password")} />
         <button type="submit">Cadastro</button>

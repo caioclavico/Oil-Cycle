@@ -13,6 +13,7 @@ interface formData {
   city: string;
   state: string;
   CEP: number;
+  contact: number;
   email: string;
   password: string;
 }

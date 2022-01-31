@@ -4,18 +4,17 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerOverlay,
+  Link,
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { useHistory } from "react-router-dom";
 
 interface IMenuProps {
   isOpen: boolean;
   onClose: () => void;
 }
-export const Menu = ({ isOpen, onClose }: IMenuProps) => {
-  const history = useHistory();
 
+export const Menu = ({ isOpen, onClose }: IMenuProps) => {
   return (
     <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
       <DrawerOverlay />
@@ -23,20 +22,20 @@ export const Menu = ({ isOpen, onClose }: IMenuProps) => {
         <DrawerHeader borderBottomWidth="1px">Oil Cycle</DrawerHeader>
         <DrawerBody>
           <VStack spacing="5">
-            <Text as="button" onClick={() => history.push("/")}>
-              INICIO
+            <Text as="button">
+              <Link href="#top">INICIO</Link>
             </Text>
-            <Text as="button" onClick={() => history.push("/")}>
-              QUEM SOMOS
+            <Text as="button">
+              <Link href="#about-us">QUEM SOMOS</Link>
             </Text>
-            <Text as="button" onClick={() => history.push("/")}>
-              COMO FUNCIONA
+            <Text as="button">
+              <Link href="#how-it-works">COMO FUNCIONA</Link>
             </Text>
-            <Text as="button" onClick={() => history.push("/")}>
-              CONTATOS
+            <Text as="button">
+              <Link href="#contact">CONTATOS</Link>
             </Text>
-            <Text as="button" onClick={() => history.push("/register")}>
-              CADASTRO
+            <Text as="button">
+              <Link href="#register">CADASTRO</Link>
             </Text>
           </VStack>
         </DrawerBody>

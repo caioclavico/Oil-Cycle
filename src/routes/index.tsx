@@ -1,15 +1,27 @@
 import { Switch } from "react-router-dom";
+import { Dashboard } from "../pages/Dashboard";
+import { Home } from "../pages/Home";
 import { Login } from "../pages/Login";
+<<<<<<< HEAD
 import RegisterBuyer from "../pages/RegisterBuyer";
 import Register from "../pages/RegisterSeller";
+=======
+import { Signup } from "../pages/Signup";
+>>>>>>> da4fa8b1f47c1db7b96067cba07eedcee629a4a3
 import { Route } from "./Route";
 
 export const Routes = () => {
   return (
     <Switch>
+      <Route exact path="/" component={Home} />
+      <Route path="/signup" component={Signup} />
       <Route path="/login" component={Login} />
+<<<<<<< HEAD
       <Route path="/register" component={Register} />
       <Route path="/registerBuyer" component={RegisterBuyer} />
+=======
+      <Route path="/dashboard" component={Dashboard} /> {/* rota privada */}
+>>>>>>> da4fa8b1f47c1db7b96067cba07eedcee629a4a3
     </Switch>
   );
 };
