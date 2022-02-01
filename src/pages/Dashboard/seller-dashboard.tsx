@@ -21,8 +21,25 @@ import Investment from "../../assets/Investment_PNG.png";
 import saveEarth from "../../assets/save-earth.png";
 import { useRef, useState } from "react";
 import { useSell } from "../../contexts/SellOilRequest";
+import { useForm } from "react-hook-form";
+
+interface SaleData {
+  seller: string;
+  amountOfOil: number;
+  userId: number;
+}
 
 export const SellerDashboard = () => {
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<SaleData>();
+
+  const Submit = (data: SaleData) => {
+    addOilSeller(data);
+  };
+
   const { addOilSeller } = useSell();
   const ref = useRef(null);
   const [inView, setInView] = useState(false);
@@ -152,10 +169,17 @@ export const SellerDashboard = () => {
               <Heading as="h3" fontSize="30px">
                 informe a quantidade:
               </Heading>
-              <Input name="quantity" height="40px" type="number" />
-              <Button onClick={() => addOilSeller} width="100%" size="md">
-                RECICLAR ÓLEO
-              </Button>
+
+              <form onSubmit={handleSubmit(Submit)}>
+                <Input
+                  {...register("amountOfOil")}
+                  height="40px"
+                  type="number"
+                />
+                <Button type="submit" width="100%" size="md">
+                  RECICLAR ÓLEO
+                </Button>
+              </form>
             </VStack>
           </Box>
         </Flex>

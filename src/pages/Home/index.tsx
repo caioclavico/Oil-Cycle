@@ -103,6 +103,7 @@ export const Home = () => {
               </HStack>
             </Flex>
             <Button
+              onClick={() => history.push("/login")}
               w="100%"
               maxWidth="738px"
               h="84px"
