@@ -30,6 +30,7 @@ interface IUser {
 
 interface IAuthContextData {
   accessToken: string;
+  id: number;
   signIn: (credentials: ISignInCredentials) => Promise<void>;
   signOut: () => void;
   user: IUser;
@@ -37,7 +38,12 @@ interface IAuthContextData {
 
 interface IAuthState {
   accessToken: string;
+
   user: IUser;
+
+  user: string;
+  id: number;
+
 }
 
 const AuthContext = createContext<IAuthContextData>({} as IAuthContextData);
@@ -56,9 +62,9 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
   const [data, setData] = useState<IAuthState>(() => {
     const accessToken = localStorage.getItem("@OilCycle:accessToken");
     const user = localStorage.getItem("@OilCycle:user");
-
-    if (accessToken && user) {
-      return { accessToken, user: JSON.parse(user) };
+    const id = localStorage.getItem("@OilCycle:id");
+    if (accessToken && user && id) {
+      return { accessToken, user: JSON.parse(user), id: JSON.parse(id) };
     }
 
     return {} as IAuthState;
@@ -69,11 +75,13 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
       const response = await api.post("/login", { email, password });
 
       const { accessToken, user } = response.data;
+      const { id } = response.data.user;
 
       localStorage.setItem("@OilCycle:accessToken", accessToken);
       localStorage.setItem("@OilCycle:user", JSON.stringify(user));
+      localStorage.setItem("@OilCycle:id", JSON.stringify(id));
 
-      setData({ accessToken, user });
+      setData({ accessToken, user, id });
     },
     []
   );
@@ -91,7 +99,11 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
         signIn,
         accessToken: data.accessToken,
         signOut,
+
         user: data.user,
+
+        id: data.id,
+
       }}
     >
       {children}

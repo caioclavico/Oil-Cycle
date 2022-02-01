@@ -16,6 +16,7 @@ interface formData {
   contact: number;
   email: string;
   password: string;
+  points: number;
 }
 interface RegisterTypeContext {
   signUp: (data: formData) => void;
