@@ -38,10 +38,7 @@ interface IAuthContextData {
 
 interface IAuthState {
   accessToken: string;
-
   user: IUser;
-
-  user: string;
   id: number;
 
 }
