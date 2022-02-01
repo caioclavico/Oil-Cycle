@@ -1,4 +1,5 @@
 import { useContext, createContext, ReactNode } from "react";
+import { useHistory } from "react-router-dom";
 import { api } from "../services";
 
 interface RegisterProps {
@@ -27,8 +28,12 @@ const RegisterContext = createContext<RegisterTypeContext>(
 export const useRegister = () => useContext(RegisterContext);
 
 const RegisterProvider = ({ children }: RegisterProps) => {
+  const history = useHistory();
   const signUp = (data: formData) => {
-    api.post("/users", data).then((response) => console.log(response.data));
+    api.post("/users", data).then((response) => {
+      console.log(response.data);
+      history.push("/login");
+    });
   };
 
   return (

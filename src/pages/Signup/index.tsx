@@ -38,8 +38,12 @@ export const Signup = () => {
               para reciclar escolha “comprador” ou se deseja vender óleo para
               reciclagem escolha “vendedor”.
             </Text>
-            <Button onClick={() => history.push("/buyer")}>COMPRADOR</Button>
-            <Button onClick={() => history.push("/seller")}>VENDEDOR</Button>
+            <Button onClick={() => history.push("/registerBuyer")}>
+              COMPRADOR
+            </Button>
+            <Button onClick={() => history.push("/registerSeller")}>
+              VENDEDOR
+            </Button>
           </VStack>
           <Flex
             position="relative"
