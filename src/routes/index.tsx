@@ -15,7 +15,7 @@ export const Routes = () => {
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
       <Route path="/registerBuyer" component={RegisterBuyer} />
-      <Route path="/dashboard" component={Dashboard} /> {/* rota privada */}
+      <Route path="/dashboard" component={Dashboard} isPrivate />
     </Switch>
   );
 };

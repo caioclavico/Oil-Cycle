@@ -8,7 +8,6 @@ export const Signup = () => {
 
   return (
     <>
-      <Header />
       <Flex
         id="about-us"
         h="100vh"
@@ -38,8 +37,10 @@ export const Signup = () => {
               para reciclar escolha “comprador” ou se deseja vender óleo para
               reciclagem escolha “vendedor”.
             </Text>
-            <Button onClick={() => history.push("/buyer")}>COMPRADOR</Button>
-            <Button onClick={() => history.push("/seller")}>VENDEDOR</Button>
+            <Button onClick={() => history.push("/registerBuyer")}>
+              COMPRADOR
+            </Button>
+            <Button onClick={() => history.push("/register")}>VENDEDOR</Button>
           </VStack>
           <Flex
             position="relative"
