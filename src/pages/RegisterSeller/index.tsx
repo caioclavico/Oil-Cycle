@@ -14,6 +14,7 @@ interface formData {
   contact: number;
   email: string;
   password: string;
+  points: number;
 }
 
 const Register = () => {
