@@ -27,11 +27,11 @@ export const Home = () => {
   if (isLargerThan769) {
     responsive.backgroundImage = oilHome;
     responsive.backgroundColor = "";
-    responsive.backgroundButton = "rgba(214, 248, 234, 0.8)";
+    responsive.backgroundButton = "rgba(25, 245, 154, 0.8)";
   } else {
     responsive.backgroundColor = "#EDC201";
     responsive.backgroundImage = "";
-    responsive.backgroundButton = "rgba(25, 245, 154, 0.8)";
+    responsive.backgroundButton = "primary.main";
   }
 
   return (
@@ -109,6 +109,7 @@ export const Home = () => {
               bgColor={responsive.backgroundButton}
               borderRadius="35px"
               boxShadow="0px 0px 12px 0px"
+              onClick={() => history.push("/login")}
             >
               <Text fontSize={["20px", "20px", "37px"]}>
                 VEM RECICLAR COM A GENTE!

@@ -15,15 +15,29 @@ interface ISignInCredentials {
   email: string;
   password: string;
 }
+interface IUser {
+  CEP: number;
+  CNPJ: number;
+  address: string;
+  city: string;
+  complement: string;
+  email: string;
+  id: number;
+  lastName: string;
+  name: string;
+  state: string;
+}
+
 interface IAuthContextData {
   accessToken: string;
   signIn: (credentials: ISignInCredentials) => Promise<void>;
   signOut: () => void;
+  user: IUser;
 }
 
 interface IAuthState {
   accessToken: string;
-  user: string;
+  user: IUser;
 }
 
 const AuthContext = createContext<IAuthContextData>({} as IAuthContextData);
@@ -73,7 +87,12 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
 
   return (
     <AuthContext.Provider
-      value={{ signIn, accessToken: data.accessToken, signOut }}
+      value={{
+        signIn,
+        accessToken: data.accessToken,
+        signOut,
+        user: data.user,
+      }}
     >
       {children}
     </AuthContext.Provider>

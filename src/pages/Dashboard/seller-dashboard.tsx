@@ -19,10 +19,9 @@ import dashboard02 from "../../assets/dashboard02.png";
 import Online_shopping from "../../assets/Online_shopping_PNG.png";
 import Investment from "../../assets/Investment_PNG.png";
 import saveEarth from "../../assets/save-earth.png";
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export const SellerDashboard = () => {
-  const ref = useRef(null);
   const [inView, setInView] = useState(false);
 
   const reveal = () => {
@@ -30,7 +29,7 @@ export const SellerDashboard = () => {
     for (let i = 0; i < reveals.length; i++) {
       let windowHeight = window.innerHeight;
       let elementTop = reveals[i].getBoundingClientRect().top;
-      let elementVisible = 300;
+      let elementVisible = 200;
       if (elementTop < windowHeight - elementVisible) {
         setInView(true);
       } else {
@@ -38,7 +37,9 @@ export const SellerDashboard = () => {
       }
     }
   };
-  window.addEventListener("scroll", reveal);
+  useEffect(() => {
+    window.addEventListener("scroll", reveal);
+  }, []);
 
   const [isLargerThan769] = useMediaQuery("(min-width: 767px)");
 
@@ -158,58 +159,81 @@ export const SellerDashboard = () => {
           </Box>
         </Flex>
         {isLargerThan769 ? (
-          <Flex
-            width="100%"
-            justifyContent="space-between"
-            mt="100px"
-            flexDirection={["column", "column", "row", "row"]}
-          >
-            <SlideFade offsetX="-400px" in={inView}>
-              <Box className="reveal">
-                <Text
-                  bgColor="#F2ECEC"
-                  fontFamily="Fauna One"
-                  padding={4}
-                  textAlign="center"
-                  textStyle="body"
-                >
-                  Troque aqui seus Oil Points por produtos da sua escolha !
-                </Text>
-                <Center padding={8}>
-                  <Image src={Online_shopping} maxWidth="400px" />
-                </Center>
-              </Box>
-            </SlideFade>
-
-            <Box
-              position="absolute"
-              transform="translateX(60%)"
-              right="50%"
-              bottom="0"
+          <>
+            <Heading
+              fontFamily="Fauna One"
+              fontSize="30px"
+              textAlign="center"
+              bgColor="#F2ECEC"
+              padding={4}
+              mt="30px"
+              width="100%"
             >
-              <SlideFade offsetY="200px" in={inView}>
-                <Image src={dashboard02} />
+              Veja o que você pode fazer com seus pontos!
+            </Heading>
+            <Flex
+              width="100%"
+              justifyContent="space-between"
+              flexDirection={["column", "column", "row", "row"]}
+              bgColor="#19F59A"
+            >
+              <SlideFade offsetX="-400px" in={inView}>
+                <Box className="reveal" paddingTop={8} paddingX={8}>
+                  <Text
+                    bgColor="#F2ECEC"
+                    fontFamily="Fauna One"
+                    padding={4}
+                    textAlign="center"
+                    textStyle="body"
+                  >
+                    Troque aqui seus Oil Points por produtos da sua escolha !
+                  </Text>
+                  <Center padding={8}>
+                    <Image
+                      src={Online_shopping}
+                      maxWidth="300px"
+                      _hover={{ transform: "translateY(-10px)" }}
+                      cursor="pointer"
+                    />
+                  </Center>
+                </Box>
               </SlideFade>
-            </Box>
 
-            <SlideFade offsetX="400px" in={inView}>
-              <Box className="reveal">
-                <Text
-                  bgColor="#F2ECEC"
-                  fontFamily="Fauna One"
-                  padding={4}
-                  textAlign="center"
-                  textStyle="body"
-                >
-                  Quanto mais Oil Points, mais você pode!
-                </Text>
-
-                <Center padding={8} ref={ref}>
-                  <Image src={Investment} maxWidth="400px" />
-                </Center>
+              <Box
+                position="absolute"
+                transform="translateX(60%)"
+                right="50%"
+                bottom="0"
+              >
+                <SlideFade offsetY="200px" in={inView}>
+                  <Image src={dashboard02} />
+                </SlideFade>
               </Box>
-            </SlideFade>
-          </Flex>
+
+              <SlideFade offsetX="400px" in={inView}>
+                <Box className="reveal" paddingTop={8} paddingX={8}>
+                  <Text
+                    bgColor="#F2ECEC"
+                    fontFamily="Fauna One"
+                    padding={4}
+                    textAlign="center"
+                    textStyle="body"
+                  >
+                    Quanto mais Oil Points, mais você pode!
+                  </Text>
+
+                  <Center padding={8}>
+                    <Image
+                      src={Investment}
+                      maxWidth="300px"
+                      _hover={{ transform: "translateY(-10px)" }}
+                      cursor="pointer"
+                    />
+                  </Center>
+                </Box>
+              </SlideFade>
+            </Flex>
+          </>
         ) : (
           <Flex width="100%" mt="20px" flexDirection="column" gap="60px">
             <Text padding={4} textAlign="center">
@@ -244,7 +268,7 @@ export const SellerDashboard = () => {
               >
                 Quanto mais Oil Points, mais você pode!
               </Text>
-              <Center padding={8} ref={ref}>
+              <Center padding={8}>
                 <Image
                   src={Investment}
                   maxWidth="400px"
