@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRegisterBuyer } from "../../contexts/RegisterBuyerProvider";
+import { Input } from "../../components/Input";
+import { Button } from "../../components/Button";
 interface formData {
   name: string;
   lastName: string;
@@ -35,20 +37,20 @@ const RegisterBuyer = () => {
     <div>
       <form onSubmit={handleSubmit(subData)}>
         <h1>Cadastro do Vendedor</h1>
-        <input placeholder="Nome" {...register("name")} />
-        <input placeholder="Sobrenome" {...register("lastName")} />
-        <input placeholder="CNPJ" {...register("CNPJ")} />
-        <input placeholder="Razão Social" {...register("corporateName")} />
-        <input placeholder="Nome Fantasia" {...register("fantasyName")} />
-        <input placeholder="Endereço" {...register("address")} />
-        <input placeholder="Complemento" {...register("complement")} />
-        <input placeholder="Cidade" {...register("city")} />
-        <input placeholder="Estado" {...register("state")} />
-        <input placeholder="CEP" {...register("CEP")} />
-        <input placeholder="Contato" {...register("contact")} />
-        <input placeholder="Email" {...register("email")} />
-        <input placeholder="Senha" {...register("password")} />
-        <button type="submit">Cadastro</button>
+        <Input placeholder="Nome" {...register("name")} />
+        <Input placeholder="Sobrenome" {...register("lastName")} />
+        <Input placeholder="CNPJ" {...register("CNPJ")} />
+        <Input placeholder="Razão Social" {...register("corporateName")} />
+        <Input placeholder="Nome Fantasia" {...register("fantasyName")} />
+        <Input placeholder="Endereço" {...register("address")} />
+        <Input placeholder="Complemento" {...register("complement")} />
+        <Input placeholder="Cidade" {...register("city")} />
+        <Input placeholder="Estado" {...register("state")} />
+        <Input placeholder="CEP" {...register("CEP")} />
+        <Input placeholder="Contato" {...register("contact")} />
+        <Input placeholder="Email" {...register("email")} />
+        <Input placeholder="Senha" {...register("password")} />
+        <Button type="submit">Cadastro</Button>
       </form>
     </div>
   );
