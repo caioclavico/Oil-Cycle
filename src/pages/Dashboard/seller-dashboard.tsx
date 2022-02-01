@@ -20,8 +20,10 @@ import Online_shopping from "../../assets/Online_shopping_PNG.png";
 import Investment from "../../assets/Investment_PNG.png";
 import saveEarth from "../../assets/save-earth.png";
 import { useRef, useState } from "react";
+import { useSell } from "../../contexts/SellOilRequest";
 
 export const SellerDashboard = () => {
+  const { addOilSeller } = useSell();
   const ref = useRef(null);
   const [inView, setInView] = useState(false);
 
@@ -151,7 +153,7 @@ export const SellerDashboard = () => {
                 informe a quantidade:
               </Heading>
               <Input name="quantity" height="40px" type="number" />
-              <Button width="100%" size="md">
+              <Button onClick={() => addOilSeller} width="100%" size="md">
                 RECICLAR ÓLEO
               </Button>
             </VStack>

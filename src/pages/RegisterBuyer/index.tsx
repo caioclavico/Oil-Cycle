@@ -6,7 +6,7 @@ import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import OilImg from "../../assets/oleo2.jpg";
 import { Grid } from "@chakra-ui/react";
-import { Flex, Heading, Link, Text, useToast, VStack } from "@chakra-ui/react";
+import { Flex, Heading, VStack } from "@chakra-ui/react";
 import { Header } from "../../components/Header";
 interface formData {
   name: string;
@@ -26,7 +26,27 @@ interface formData {
 
 const RegisterBuyer = () => {
   const { signUpBuy } = useRegisterBuyer();
-  const schema = yup.object().shape({});
+  const schema = yup.object().shape({
+    name: yup.string().required("Campo obrigatório"),
+    lastName: yup.string().required("Campo obrigatório"),
+    CNPJ: yup.string().required("Campo obrigatório").min(14, "CNPJ inválido"),
+    corporateName: yup.string().required("Campo obrigatório"),
+    fantasyName: yup.string().required("Campo obrigatório"),
+    address: yup.string().required("Campo obrigatório"),
+    complement: yup.string().required("Campo obrigatório"),
+    city: yup.string().required("Campo obrigatório"),
+    state: yup.string().required("Campo obrigatório"),
+    CEP: yup
+      .string()
+      .required("Campo obrigatório")
+      .min(8, "Mínimo de 8 dígitos"),
+    contact: yup.string().required("Campo obrigatório"),
+    email: yup.string().required("Campo obrigatório").email("Email inválido"),
+    password: yup
+      .string()
+      .required("Campo obrigatório")
+      .min(8, "Mínimo 8 dígitos"),
+  });
   const {
     handleSubmit,
     register,
