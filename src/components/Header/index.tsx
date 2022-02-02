@@ -8,9 +8,10 @@ import {
   useDisclosure,
   useMediaQuery,
 } from "@chakra-ui/react";
+import { useRef } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 import logo from "../../assets/Logo.png";
 import { Menu } from "./Menu";
 
@@ -18,6 +19,12 @@ export const Header = () => {
   const { isOpen, onClose, onToggle } = useDisclosure();
   const [isLargerThan769] = useMediaQuery("(min-width: 769px)");
   const history = useHistory();
+  const location = useLocation();
+  let isHome = true;
+
+  if (location.pathname !== "/") {
+    isHome = false;
+  }
 
   return (
     <Flex
@@ -43,19 +50,39 @@ export const Header = () => {
           <Flex alignItems="flex-end">
             <HStack spacing="5">
               <Text as="button" _hover={{ transform: "translateY(-4px)" }}>
-                <Link href="#">INICIO</Link>
+                {isHome ? (
+                  <Link href="#">INICIO</Link>
+                ) : (
+                  <Link href="/">INICIO</Link>
+                )}
               </Text>
               <Text as="button" _hover={{ transform: "translateY(-4px)" }}>
-                <Link href="#about-us">QUEM SOMOS</Link>
+                {isHome ? (
+                  <Link href="#about-us">QUEM SOMOS</Link>
+                ) : (
+                  <Link href="/#about-us">QUEM SOMOS</Link>
+                )}
               </Text>
               <Text as="button" _hover={{ transform: "translateY(-4px)" }}>
-                <Link href="#how-it-works">COMO FUNCIONA</Link>
+                {isHome ? (
+                  <Link href="#how-it-works">COMO FUNCIONA</Link>
+                ) : (
+                  <Link href="/#how-it-works">COMO FUNCIONA</Link>
+                )}
               </Text>
               <Text as="button" _hover={{ transform: "translateY(-4px)" }}>
-                <Link href="#contact">CONTATOS</Link>
+                {isHome ? (
+                  <Link href="#contact">CONTATOS</Link>
+                ) : (
+                  <Link href="/#contact">CONTATOS</Link>
+                )}
               </Text>
               <Text as="button" _hover={{ transform: "translateY(-4px)" }}>
-                <Link href="#register">CADASTRO</Link>
+                {isHome ? (
+                  <Link href="#register">CADASTRO</Link>
+                ) : (
+                  <Link href="/#register">CADASTRO</Link>
+                )}
               </Text>
             </HStack>
           </Flex>

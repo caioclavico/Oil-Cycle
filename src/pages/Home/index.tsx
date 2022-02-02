@@ -9,7 +9,7 @@ import {
   useMediaQuery,
   VStack,
 } from "@chakra-ui/react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import oilHome from "../../assets/oil-home.jpg";
 import oilBg from "../../assets/oleo2.jpg";
 import { Header } from "../../components/Header";

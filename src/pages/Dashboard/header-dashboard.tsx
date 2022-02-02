@@ -17,6 +17,7 @@ export const HeaderDashboard = () => {
   const { signOut, user } = useAuth();
   const history = useHistory();
 
+  console.log(user);
   return (
     <Flex
       h="72px"
