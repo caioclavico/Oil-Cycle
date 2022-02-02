@@ -17,65 +17,73 @@ import {
 
 export const BuyerDashboard = () => {
   const [isSmallThan769] = useMediaQuery("(max-width: 769px)");
+  const [isLargerThan769] = useMediaQuery("(min-width: 769px)");
   const { signOut } = useAuth();
   return (
     <>
-      <Center
-        bgColor="#19F59A"
-        height="300px"
-        position="relative"
-        top="70px"
-        display={["none", "none", "flex", "flex"]}
-      >
-        <Image src={saveEarth} height="inherit" />
-      </Center>
+      <HeaderDashboard />
+      {isLargerThan769 ? (
+        <>
+          <Center
+            bgColor="#19F59A"
+            height="300px"
+            position="relative"
+            top="70px"
+            display={["none", "none", "flex", "flex"]}
+          >
+            <Image src={saveEarth} height="inherit" />
+          </Center>
 
-      <Heading
-        fontFamily="Fauna One"
-        fontSize="30px"
-        textAlign="center"
-        bgColor="#F2ECEC"
-        position="absolute"
-        top="420px"
-        left="630px"
-        padding={4}
-      >
-        Veja abaixo os vendedores disponíveis!
-      </Heading>
+          <Heading
+            fontFamily="Fauna One"
+            fontSize="30px"
+            textAlign="center"
+            bgColor="#F2ECEC"
+            position="absolute"
+            top="420px"
+            left="630px"
+            padding={4}
+          >
+            Veja abaixo os vendedores disponíveis!
+          </Heading>
 
-      <Text position="absolute" top="520px" left="630px">
-        Compre o óleo de quem desejar agora mesmo, é muito fácil e simples.
-        <br />
-        <br />
-        1- Escolha o vendedor do qual gostaria de adiquirir o óleo reciclável,
-        <br />
-        observe que já está disponível o endereço para retirada e a quantidade
-        <br />
-        de óleo que será possivel retirar.
-        <br />
-        <br />
-        2- No campo “informe a quantidade” coloque quantos litros de óleo você
-        <br />
-        gostaria de retirar e clique em adicionar.
-        <br />
-        <br />
-        3- Após escolher todos os vendedores navegue até seu carrinho, caso{" "}
-        <br />
-        esteja tudo certo clique em concluir. Você receberá o contato do <br />
-        vendedor para combinar a retirada.
-      </Text>
+          <Text position="absolute" top="520px" left="630px">
+            Compre o óleo de quem desejar agora mesmo, é muito fácil e simples.
+            <br />
+            <br />
+            1- Escolha o vendedor do qual gostaria de adiquirir o óleo
+            reciclável,
+            <br />
+            observe que já está disponível o endereço para retirada e a
+            quantidade
+            <br />
+            de óleo que será possivel retirar.
+            <br />
+            <br />
+            2- No campo “informe a quantidade” coloque quantos litros de óleo
+            você
+            <br />
+            gostaria de retirar e clique em adicionar.
+            <br />
+            <br />
+            3- Após escolher todos os vendedores navegue até seu carrinho, caso{" "}
+            <br />
+            esteja tudo certo clique em concluir. Você receberá o contato do{" "}
+            <br />
+            vendedor para combinar a retirada.
+          </Text>
 
-      <Center padding={8}>
-        <Image
-          src={OilShopping}
-          maxWidth="400px"
-          position="absolute"
-          top="450px"
-          left="1100px"
-        />
-      </Center>
-
-      {isSmallThan769 && (
+          <Center padding={8}>
+            <Image
+              src={OilShopping}
+              maxWidth="400px"
+              position="absolute"
+              top="450px"
+              left="1100px"
+            />
+          </Center>
+        </>
+      ) : (
         <Flex
           bg="gray.10"
           w="100%"
