@@ -48,7 +48,6 @@ export const Login = () => {
   const handleLogin = (data: LoginData) => {
     signIn(data)
       .then((response) => {
-        console.log(response);
         // criar logica para direcionar para dashboard de comprador ou vendedor
         history.push("/dashboard");
       })
@@ -65,7 +64,6 @@ export const Login = () => {
   };
   return (
     <>
-      <Header />
       <Flex
         height="100vh"
         justifyContent="center"

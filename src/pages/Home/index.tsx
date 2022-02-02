@@ -27,11 +27,11 @@ export const Home = () => {
   if (isLargerThan769) {
     responsive.backgroundImage = oilHome;
     responsive.backgroundColor = "";
-    responsive.backgroundButton = "rgba(214, 248, 234, 0.8)";
+    responsive.backgroundButton = "rgba(25, 245, 154, 0.8)";
   } else {
     responsive.backgroundColor = "#EDC201";
     responsive.backgroundImage = "";
-    responsive.backgroundButton = "rgba(25, 245, 154, 0.8)";
+    responsive.backgroundButton = "primary.main";
   }
 
   return (

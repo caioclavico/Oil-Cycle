@@ -8,7 +8,6 @@ export const Signup = () => {
 
   return (
     <>
-      <Header />
       <Flex
         id="about-us"
         h="100vh"
