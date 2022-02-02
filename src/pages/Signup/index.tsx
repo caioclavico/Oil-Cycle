@@ -40,7 +40,9 @@ export const Signup = () => {
             <Button onClick={() => history.push("/registerBuyer")}>
               COMPRADOR
             </Button>
-            <Button onClick={() => history.push("/register")}>VENDEDOR</Button>
+            <Button onClick={() => history.push("/registerSeller")}>
+              VENDEDOR
+            </Button>
           </VStack>
           <Flex
             position="relative"

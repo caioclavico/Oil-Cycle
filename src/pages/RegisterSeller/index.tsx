@@ -2,6 +2,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRegister } from "../../contexts/RegisterProvider";
+import { Input } from "../../components/Input";
+import { Flex, Grid, Heading, VStack } from "@chakra-ui/react";
+import { Header } from "../../components/Header";
+import OilImg from "../../assets/oleo2.jpg";
+import { Button } from "../../components/Button";
+
 interface formData {
   name: string;
   lastName: string;
@@ -32,21 +38,45 @@ const Register = () => {
   };
   return (
     <div>
-      <form onSubmit={handleSubmit(subData)}>
-        <h1>Cadastro do Vendedor</h1>
-        <input placeholder="Nome" {...register("name")} />
-        <input placeholder="Sobrenome" {...register("lastName")} />
-        <input placeholder="CPF" {...register("CPF")} />
-        <input placeholder="Endereço" {...register("address")} />
-        <input placeholder="Complemento" {...register("complement")} />
-        <input placeholder="Cidade" {...register("city")} />
-        <input placeholder="Estado" {...register("state")} />
-        <input placeholder="CEP" {...register("CEP")} />
-        <input placeholder="Contato" {...register("contact")} />
-        <input placeholder="Email" {...register("email")} />
-        <input placeholder="Senha" {...register("password")} />
-        <button type="submit">Cadastro</button>
-      </form>
+      <Header />
+      <Flex
+        height="250vh"
+        justifyContent="center"
+        alignItems={["flex-start", "flex-start", "center"]}
+        backgroundImage={OilImg}
+        backgroundSize="cover"
+      >
+        <Grid
+          as="form"
+          width="500px"
+          position="relative"
+          alignItems="center"
+          paddingX={[4, 4, 10, 10]}
+          paddingY={8}
+          marginX={[2, 2, 8, 8]}
+          marginTop={[10, 10, 0, 0]}
+          bgColor="rgba(254, 251, 251, 0.85)"
+          textAlign="center"
+        >
+          <Heading fontFamily="Fauna One">Cadastro de Vendedores</Heading>
+          <VStack mt="8" spacing="10">
+            <Input placeholder="Nome" {...register("name")} />
+            <Input placeholder="Sobrenome" {...register("lastName")} />
+            <Input placeholder="CPF" {...register("CPF")} />
+            <Input placeholder="Endereço" {...register("address")} />
+            <Input placeholder="Complemento" {...register("complement")} />
+            <Input placeholder="Cidade" {...register("city")} />
+            <Input placeholder="Estado" {...register("state")} />
+            <Input placeholder="CEP" {...register("CEP")} />
+            <Input placeholder="Contato" {...register("contact")} />
+            <Input placeholder="Email" {...register("email")} />
+            <Input placeholder="Senha" {...register("password")} />
+            <Button type="submit" onClick={handleSubmit(subData)}>
+              Cadastro
+            </Button>
+          </VStack>
+        </Grid>
+      </Flex>
     </div>
   );
 };

@@ -103,13 +103,13 @@ export const Home = () => {
               </HStack>
             </Flex>
             <Button
+              onClick={() => history.push("/login")}
               w="100%"
               maxWidth="738px"
               h="84px"
               bgColor={responsive.backgroundButton}
               borderRadius="35px"
               boxShadow="0px 0px 12px 0px"
-              onClick={() => history.push("/login")}
             >
               <Text fontSize={["20px", "20px", "37px"]}>
                 VEM RECICLAR COM A GENTE!
