@@ -13,6 +13,7 @@ import logo from "../../assets/Logo.png";
 import cart from "../../assets/cart.png";
 import { useAuth } from "../../contexts/AuthContext";
 import { ModalSeller } from "../../components/ModalSeller";
+import { ModalBuyer } from "../../components/ModalBuyer";
 
 export const HeaderDashboard = () => {
   const [isLargerThan769] = useMediaQuery("(min-width: 769px)");
@@ -20,9 +21,20 @@ export const HeaderDashboard = () => {
   const history = useHistory();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  let isBuyer = false;
+
+  if ("CNPJ" in user) {
+    isBuyer = true;
+  }
+
   return (
     <>
-      <ModalSeller isOpen={isOpen} onClose={onClose} />
+      {isBuyer ? (
+        <ModalBuyer isOpen={isOpen} onClose={onClose} />
+      ) : (
+        <ModalSeller isOpen={isOpen} onClose={onClose} />
+      )}
+
       <Flex
         h="72px"
         flexDirection="row"

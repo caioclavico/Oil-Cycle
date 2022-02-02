@@ -15,8 +15,7 @@ import {
 import { FaTimes } from "react-icons/fa";
 import gotaDeOleo from "../../assets/gota-de-oleo.png";
 import heroi from "../../assets/heroi_boneco.png";
-import modalSellerImg from "../../assets/modal-seller-img.png";
-import gotaPoints from "../../assets/gota.png";
+import modalBuyerImg from "../../assets/modal-buyer-img.png";
 import { useAuth } from "../../contexts/AuthContext";
 
 interface ModalSellerProps {
@@ -24,7 +23,7 @@ interface ModalSellerProps {
   onClose: () => void;
 }
 
-export const ModalSeller = ({ isOpen, onClose }: ModalSellerProps) => {
+export const ModalBuyer = ({ isOpen, onClose }: ModalSellerProps) => {
   const { user } = useAuth();
   const [isLargerThan769] = useMediaQuery("(min-width: 768px)");
 
@@ -96,12 +95,11 @@ export const ModalSeller = ({ isOpen, onClose }: ModalSellerProps) => {
                 </Text>
                 <Text>Bairro: {user.address}</Text>
                 <Text>CEP: {user.CEP}</Text>
-                <Text>CPF: 000.000.000-00</Text>
+                <Text>CNPJ: {user.CNPJ}</Text>
               </VStack>
               {isLargerThan769 && (
                 <>
-                  <Button>Trocar meus pontos</Button>
-                  <Button>Reciclar óleo</Button>
+                  <Button>Procurar vendedores</Button>
                 </>
               )}
             </Flex>
@@ -124,27 +122,7 @@ export const ModalSeller = ({ isOpen, onClose }: ModalSellerProps) => {
                 Acompanhe aqui as suas infromações do seu perfil
               </Text>
 
-              <VStack alignItems="flex-start" color="primary.main" spacing={4}>
-                <Flex
-                  gap="30px"
-                  alignItems="center"
-                  border="1px solid #19F59A"
-                  borderRadius="30px"
-                  width="100%"
-                  paddingY={4}
-                  paddingX={2}
-                >
-                  <Image
-                    src={gotaPoints}
-                    w="50px"
-                    h="50px"
-                    objectFit="contain"
-                  />
-                  <Flex flexDirection="column">
-                    <Text fontWeight="700">MEUS OILS POINTS:</Text>
-                    <Text>25850</Text>
-                  </Flex>
-                </Flex>
+              <VStack alignItems="flex-start" color="primary.main" spacing={6}>
                 <Flex
                   gap="30px"
                   alignItems="center"
@@ -182,12 +160,11 @@ export const ModalSeller = ({ isOpen, onClose }: ModalSellerProps) => {
                 </Flex>
                 {isLargerThan769 ? (
                   <Center width="100%">
-                    <Image src={modalSellerImg} width="250px" />
+                    <Image src={modalBuyerImg} width="250px" />
                   </Center>
                 ) : (
-                  <Center flexDirection="column" width="100%" gap="15px">
-                    <Button>Trocar meus pontos</Button>
-                    <Button>Reciclar óleo</Button>
+                  <Center width="100%">
+                    <Button>Procurar vendedores</Button>
                   </Center>
                 )}
               </VStack>
