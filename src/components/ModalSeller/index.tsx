@@ -121,7 +121,7 @@ export const ModalSeller = ({ isOpen, onClose }: ModalSellerProps) => {
                 textAlign="center"
                 marginBottom={4}
               >
-                Acompanhe aqui as suas infromações do seu perfil
+                Acompanhe aqui as infromações do seu perfil
               </Text>
 
               <VStack alignItems="flex-start" color="primary.main" spacing={4}>
