@@ -17,8 +17,7 @@ export const Dashboard = () => {
 
   useEffect(() => {
     loadCart(user.id, accessToken);
-    console.log(cart);
-  }, [accessToken, cart]);
+  }, []);
 
   return (
     <Box width="100vw">
