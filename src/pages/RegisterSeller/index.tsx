@@ -116,11 +116,13 @@ const Register = () => {
               {...register("contact")}
             />
             <Input
+              type="email"
               placeholder="Email"
               error={errors.email}
               {...register("email")}
             />
             <Input
+              type="password"
               placeholder="Senha"
               error={errors.password}
               {...register("password")}
