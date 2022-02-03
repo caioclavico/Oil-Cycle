@@ -13,76 +13,79 @@ import {
   useMediaQuery,
   Center,
   Heading,
+  VStack,
+  SimpleGrid,
 } from "@chakra-ui/react";
+import { ProductCard } from "../../components/ProductCard";
 
 export const BuyerDashboard = () => {
-  const [isSmallThan769] = useMediaQuery("(max-width: 769px)");
   const [isLargerThan769] = useMediaQuery("(min-width: 769px)");
   const { signOut } = useAuth();
   return (
     <>
       <HeaderDashboard />
       {isLargerThan769 ? (
-        <>
+        <Flex flexDirection="column" position="relative" top="70px">
           <Center
             bgColor="#19F59A"
             height="300px"
-            position="relative"
-            top="70px"
+            width="100%"
             display={["none", "none", "flex", "flex"]}
           >
-            <Image src={saveEarth} height="inherit" />
+            <Image src={saveEarth} height="inherit" backgroundSize="cover" />
           </Center>
-
-          <Heading
-            fontFamily="Fauna One"
-            fontSize="30px"
-            textAlign="center"
-            bgColor="#F2ECEC"
-            position="absolute"
-            top="420px"
-            left="630px"
-            padding={4}
-          >
-            Veja abaixo os vendedores disponíveis!
-          </Heading>
-
-          <Text position="absolute" top="520px" left="630px">
-            Compre o óleo de quem desejar agora mesmo, é muito fácil e simples.
-            <br />
-            <br />
-            1- Escolha o vendedor do qual gostaria de adiquirir o óleo
-            reciclável,
-            <br />
-            observe que já está disponível o endereço para retirada e a
-            quantidade
-            <br />
-            de óleo que será possivel retirar.
-            <br />
-            <br />
-            2- No campo “informe a quantidade” coloque quantos litros de óleo
-            você
-            <br />
-            gostaria de retirar e clique em adicionar.
-            <br />
-            <br />
-            3- Após escolher todos os vendedores navegue até seu carrinho, caso{" "}
-            <br />
-            esteja tudo certo clique em concluir. Você receberá o contato do{" "}
-            <br />
-            vendedor para combinar a retirada.
-          </Text>
-
-          <Center padding={8}>
-            <Image
-              src={OilShopping}
-              maxWidth="400px"
-              position="absolute"
-              top="450px"
-              left="1100px"
-            />
-          </Center>
-        </>
+          <Flex flexDirection="column" alignItems="stretch">
+            <Heading
+              fontFamily="Fauna One"
+              fontSize="30px"
+              textAlign="center"
+              bgColor="#F2ECEC"
+              padding={4}
+            >
+              Veja abaixo os vendedores disponíveis!
+            </Heading>
+            <Flex
+              alignItems="center"
+              bgColor="rgba(247, 242, 242, 0.9)"
+              justifyContent="space-between"
+            >
+              <SimpleGrid columns={2}>
+                <Text textAlign="center" columnCount="2" p="15px">
+                  Compre o óleo de quem desejar agora mesmo, é muito fácil e
+                  simples.
+                  <br />
+                  <br />
+                  1- Escolha o vendedor do qual gostaria de adiquirir o óleo
+                  reciclável,
+                  <br />
+                  observe que já está disponível o endereço para retirada e a
+                  quantidade
+                  <br />
+                  de óleo que será possivel retirar.
+                  <br />
+                  <br />
+                </Text>
+                <Text p="15px">
+                  {" "}
+                  2- No campo “informe a quantidade” coloque quantos litros de
+                  óleo você
+                  <br />
+                  gostaria de retirar e clique em adicionar.
+                  <br />
+                  <br />
+                  3- Após escolher todos os vendedores navegue até seu carrinho,
+                  caso <br />
+                  esteja tudo certo clique em concluir. Você receberá o contato
+                  do <br />
+                  vendedor para combinar a retirada.
+                </Text>
+              </SimpleGrid>
+              <Center padding={3} height="181px">
+                <Image src={OilShopping} maxWidth="339px" />
+              </Center>
+            </Flex>
+          </Flex>
+        </Flex>
       ) : (
         <Flex
           bg="gray.10"
@@ -93,14 +96,14 @@ export const BuyerDashboard = () => {
         >
           <Flex
             bg="secondary.main"
-            w={["340px", "500px", "740px"]}
+            w="100%"
             h="106px"
             color="primary.main"
             p="6"
             position="fixed"
             top="90px"
-            left="12px"
             zIndex="100"
+            justifyContent="space-between"
           >
             <Flex
               alignItems="center"
@@ -122,9 +125,9 @@ export const BuyerDashboard = () => {
             <Flex position="relative" alignItems="center">
               <Text
                 position="absolute"
-                top="24px"
+                top="16px"
                 zIndex="3"
-                left={["75px", "145px", "425px"]}
+                left="24px"
                 color="#EA0404"
               >
                 1
@@ -134,14 +137,15 @@ export const BuyerDashboard = () => {
                 w="50px"
                 h="50px"
                 maxWidth="initial"
-                position="absolute"
                 left={["50px", "120px", "400px"]}
-                top="10px"
               />
             </Flex>
           </Flex>
         </Flex>
       )}
+      {/* <Flex flexDirection="row">
+        <ProductCard />
+      </Flex> */}
     </>
   );
 };
