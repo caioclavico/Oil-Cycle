@@ -17,13 +17,21 @@ import {
   SimpleGrid,
 } from "@chakra-ui/react";
 import { ProductCard } from "../../components/ProductCard";
+import { useSell } from "../../contexts/SellOilRequest";
+import { useEffect, useState } from "react";
 
 export const BuyerDashboard = () => {
   const [isLargerThan769] = useMediaQuery("(min-width: 769px)");
   const { signOut } = useAuth();
+  const { product, getOilSeller } = useSell();
+
+  useEffect(() => {
+    getOilSeller();
+  }, [product]);
+
+  console.log(product);
   return (
     <>
-      <HeaderDashboard />
       {isLargerThan769 ? (
         <Flex flexDirection="column" position="relative" top="70px">
           <Center
@@ -34,7 +42,12 @@ export const BuyerDashboard = () => {
           >
             <Image src={saveEarth} height="inherit" backgroundSize="cover" />
           </Center>
-          <Flex flexDirection="column" alignItems="stretch">
+          <Flex
+            flexDirection="column"
+            alignItems="stretch"
+            maxWidth="1160px"
+            margin="23px auto"
+          >
             <Heading
               fontFamily="Fauna One"
               fontSize="30px"
@@ -85,67 +98,84 @@ export const BuyerDashboard = () => {
               </Center>
             </Flex>
           </Flex>
-        </Flex>
-      ) : (
-        <Flex
-          bg="gray.10"
-          w="100%"
-          h="2500"
-          color="primary.main"
-          justifyContent="center"
-        >
           <Flex
-            bg="secondary.main"
-            w="100%"
-            h="106px"
-            color="primary.main"
-            p="6"
-            position="fixed"
-            top="90px"
-            zIndex="100"
-            justifyContent="space-between"
+            position="relative"
+            top="100px"
+            justifyContent="center"
+            m="0 auto"
+            flexDirection="column"
+            gap={5}
           >
-            <Flex
-              alignItems="center"
-              minWidth="207px"
-              position="relative"
-              right="0px"
-            >
-              <Avatar name="Nome Dinamico" src="" />
-              <Flex flexDirection="column" ml="5">
-                <Text color="primary.main" fontWeight="700">
-                  Olá João
-                </Text>
-                <Text color="primary.main">
-                  <Link>Ver meu perfil</Link> |{" "}
-                  <Link onClick={() => signOut}>Sair</Link>
-                </Text>
-              </Flex>
-            </Flex>
-            <Flex position="relative" alignItems="center">
-              <Text
-                position="absolute"
-                top="16px"
-                zIndex="3"
-                left="24px"
-                color="#EA0404"
-              >
-                1
-              </Text>
-              <Image
-                src={cart}
-                w="50px"
-                h="50px"
-                maxWidth="initial"
-                left={["50px", "120px", "400px"]}
+            {product.map((item) => (
+              <ProductCard
+                name={item.name}
+                city={item.city}
+                cep={item.CEP}
+                state={item.state}
+                amountOfOil={item.amountOfOil}
               />
-            </Flex>
+            ))}
           </Flex>
         </Flex>
+      ) : (
+        <>
+          <Flex
+            bg="gray.10"
+            w="100%"
+            h="2500"
+            color="primary.main"
+            justifyContent="center"
+          >
+            <Flex
+              bg="secondary.main"
+              w="100%"
+              h="106px"
+              color="primary.main"
+              p="6"
+              position="fixed"
+              top="90px"
+              zIndex="100"
+              justifyContent="space-between"
+            >
+              <Flex
+                alignItems="center"
+                minWidth="207px"
+                position="relative"
+                right="0px"
+              >
+                <Avatar name="Nome Dinamico" src="" />
+                <Flex flexDirection="column" ml="5">
+                  <Text color="primary.main" fontWeight="700">
+                    Olá João
+                  </Text>
+                  <Text color="primary.main">
+                    <Link>Ver meu perfil</Link> |{" "}
+                    <Link onClick={() => signOut}>Sair</Link>
+                  </Text>
+                </Flex>
+              </Flex>
+              <Flex position="relative" alignItems="center">
+                <Text
+                  position="absolute"
+                  top="16px"
+                  zIndex="3"
+                  left="24px"
+                  color="#EA0404"
+                >
+                  1
+                </Text>
+                <Image
+                  src={cart}
+                  w="50px"
+                  h="50px"
+                  maxWidth="initial"
+                  left={["50px", "120px", "400px"]}
+                />
+              </Flex>
+            </Flex>
+          </Flex>
+        </>
       )}
-      {/* <Flex flexDirection="row">
-        <ProductCard />
-      </Flex> */}
     </>
   );
 };
