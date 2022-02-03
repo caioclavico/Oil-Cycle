@@ -8,6 +8,7 @@ export const Signup = () => {
 
   return (
     <>
+      <Header />
       <Flex
         id="about-us"
         h="100vh"
@@ -40,7 +41,9 @@ export const Signup = () => {
             <Button onClick={() => history.push("/registerBuyer")}>
               COMPRADOR
             </Button>
-            <Button onClick={() => history.push("/register")}>VENDEDOR</Button>
+            <Button onClick={() => history.push("/registerSeller")}>
+              VENDEDOR
+            </Button>
           </VStack>
           <Flex
             position="relative"

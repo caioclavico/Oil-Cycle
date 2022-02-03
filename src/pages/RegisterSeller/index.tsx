@@ -1,8 +1,6 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useRegisterBuyer } from "../../contexts/RegisterBuyerProvider";
-import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import oilImg from "../../assets/oleo2.jpg";

@@ -19,19 +19,21 @@ interface SaleData {
 
 const SellerProvider = ({ children }: Props) => {
   const { id, accessToken } = useAuth();
-  console.log(accessToken, id);
   const addOilSeller = (data: SaleData) => {
-    api.post(
-      "/oilSale",
-      {
-        seller: data.seller,
-        amountOfOil: data.amountOfOil,
-        userId: id,
-      },
-      {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      }
-    );
+    api
+      .post(
+        "/oilSale",
+        {
+          seller: data.seller,
+          amountOfOil: data.amountOfOil,
+          userId: id,
+        },
+        {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        }
+      )
+      .then((response) => console.log(response.data))
+      .catch((err) => console.log(err));
   };
   const getOilSeller = () => {
     api

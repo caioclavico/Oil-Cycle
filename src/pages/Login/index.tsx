@@ -64,6 +64,7 @@ export const Login = () => {
   };
   return (
     <>
+      <Header />
       <Flex
         height="100vh"
         justifyContent="center"
