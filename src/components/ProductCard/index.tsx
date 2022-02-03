@@ -28,22 +28,38 @@ export const ProductCard = ({
     flexDir={["column", "column", "row", "row"]}
     padding="0px 20px"
   >
-    <HStack spacing="10">
+    <HStack
+      spacing={["0", "0", "10"]}
+      flexDirection={["column", "column", "row", "row"]}
+      alignItems={["flex-start", "flex-start", "center"]}
+    >
       <Flex
         as="figure"
         alignItems="center"
         flexDirection="column"
         justifyContent="center"
       >
-        <Text as="figcaption">
-          <Heading as="h2" fontSize={["20px", "20px", "30px", "36px"]}>
-            Disponível
-          </Heading>
-          <Icon src={Check} size="96" margin="0 auto" />
-          <Heading as="h3" fontSize="24px">
-            <b>Vendedor:</b>&nbsp;{name}
-          </Heading>
-        </Text>
+        <Flex
+          as="figcaption"
+          textAlign="center"
+          flexDirection={["row", "row", "column", "column"]}
+        >
+          <Box>
+            <Icon src={Check} size="96" margin="0 auto" />
+          </Box>
+          <Flex
+            flexDirection="column"
+            justifyContent="center"
+            ml={["20px", "20px", "0"]}
+          >
+            <Heading as="h2" fontSize={["20px", "20px", "30px", "36px"]}>
+              Disponível
+            </Heading>
+            <Heading as="h3" fontSize="24px">
+              <b>Vendedor:</b>&nbsp;{name}
+            </Heading>
+          </Flex>
+        </Flex>
       </Flex>
       <Flex as="figure" alignItems="center" flexDirection="row-reverse">
         <Flex flexDirection="column" textAlign="center">
@@ -71,8 +87,13 @@ export const ProductCard = ({
           <Text as="figcaption">{amountOfOil} litros disponíveis</Text>
         </Box>
       </Flex>
-      <Flex flexDirection="column" justifyContent="center" textAlign="center">
-        <Text>Adicionar</Text>
+      <Flex
+        flexDirection="column"
+        justifyContent="center"
+        textAlign="center"
+        alignSelf="center"
+      >
+        <Text display={["none", "none", "inline"]}>Adicionar</Text>
         <Flex as="button" alignItems="center">
           <Icon src={Plus} size="96" />
         </Flex>

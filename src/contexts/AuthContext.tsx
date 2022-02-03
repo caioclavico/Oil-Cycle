@@ -40,7 +40,6 @@ interface IAuthState {
   accessToken: string;
   user: IUser;
   id: number;
-
 }
 
 const AuthContext = createContext<IAuthContextData>({} as IAuthContextData);
@@ -86,6 +85,7 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
   const signOut = useCallback(() => {
     localStorage.removeItem("@OilCycle:accessToken");
     localStorage.removeItem("@OilCycle:user");
+    localStorage.removeItem("@OilCycle:id");
 
     setData({} as IAuthState);
   }, []);
@@ -100,7 +100,6 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
         user: data.user,
 
         id: data.id,
-
       }}
     >
       {children}

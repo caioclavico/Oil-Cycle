@@ -15,7 +15,7 @@ interface Props {
 }
 interface SellerFuncs {
   addOilSeller: (data: SaleData) => void;
-  getOilSeller: () => void;
+  getOilSeller: (accessToken: string) => void;
   product: IProduct[];
 }
 interface SaleData {
@@ -31,6 +31,7 @@ interface IProduct {
   CEP: number;
   amountOfOil: number;
   userId: string;
+  id: number;
 }
 
 const SellerProvider = ({ children }: Props) => {
@@ -58,13 +59,12 @@ const SellerProvider = ({ children }: Props) => {
       .catch((err) => console.log(err));
   };
 
-  const getOilSeller = useCallback(async () => {
+  const getOilSeller = useCallback(async (accessToken) => {
     await api
       .get("/oilSale", {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
       .then((response) => {
-        console.log(response.data);
         setProduct(response.data);
       });
   }, []);

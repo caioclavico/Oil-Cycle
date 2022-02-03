@@ -1,4 +1,3 @@
-import { HeaderDashboard } from "./header-dashboard";
 import { useAuth } from "../../contexts/AuthContext";
 import cart from "../../assets/cart.png";
 import saveEarth from "../../assets/save-earth.png";
@@ -13,23 +12,22 @@ import {
   useMediaQuery,
   Center,
   Heading,
-  VStack,
   SimpleGrid,
+  Box,
 } from "@chakra-ui/react";
 import { ProductCard } from "../../components/ProductCard";
 import { useSell } from "../../contexts/SellOilRequest";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export const BuyerDashboard = () => {
   const [isLargerThan769] = useMediaQuery("(min-width: 769px)");
-  const { signOut } = useAuth();
+  const { signOut, accessToken } = useAuth();
   const { product, getOilSeller } = useSell();
 
   useEffect(() => {
-    getOilSeller();
-  }, [product]);
+    getOilSeller(accessToken);
+  }, []);
 
-  console.log(product);
   return (
     <>
       {isLargerThan769 ? (
@@ -63,7 +61,7 @@ export const BuyerDashboard = () => {
               justifyContent="space-between"
             >
               <SimpleGrid columns={2}>
-                <Text textAlign="center" columnCount="2" p="15px">
+                <Text textAlign="center" columncount="2" p="15px">
                   Compre o óleo de quem desejar agora mesmo, é muito fácil e
                   simples.
                   <br />
@@ -107,13 +105,15 @@ export const BuyerDashboard = () => {
             gap={5}
           >
             {product.map((item) => (
-              <ProductCard
-                name={item.name}
-                city={item.city}
-                cep={item.CEP}
-                state={item.state}
-                amountOfOil={item.amountOfOil}
-              />
+              <Box key={item.id}>
+                <ProductCard
+                  name={item.name}
+                  city={item.city}
+                  cep={item.CEP}
+                  state={item.state}
+                  amountOfOil={item.amountOfOil}
+                />
+              </Box>
             ))}
           </Flex>
         </Flex>
@@ -125,6 +125,8 @@ export const BuyerDashboard = () => {
             h="2500"
             color="primary.main"
             justifyContent="center"
+            position="relative"
+            top="70px"
           >
             <Flex
               bg="secondary.main"
@@ -133,7 +135,7 @@ export const BuyerDashboard = () => {
               color="primary.main"
               p="6"
               position="fixed"
-              top="90px"
+              top="73px"
               zIndex="100"
               justifyContent="space-between"
             >
@@ -172,6 +174,26 @@ export const BuyerDashboard = () => {
                   left={["50px", "120px", "400px"]}
                 />
               </Flex>
+            </Flex>
+            <Flex
+              position="relative"
+              top="150px"
+              justifyContent="center"
+              m="0 auto"
+              flexDirection="column"
+              gap={5}
+            >
+              {product.map((item) => (
+                <Box key={item.id}>
+                  <ProductCard
+                    name={item.name}
+                    city={item.city}
+                    cep={item.CEP}
+                    state={item.state}
+                    amountOfOil={item.amountOfOil}
+                  />
+                </Box>
+              ))}
             </Flex>
           </Flex>
         </>
