@@ -35,7 +35,6 @@ export const HeaderDashboard = () => {
     isBuyer = true;
   }
 
-  console.log(user);
   return (
     <>
       {isBuyer ? (
