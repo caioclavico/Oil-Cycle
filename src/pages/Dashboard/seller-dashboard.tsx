@@ -19,7 +19,7 @@ import dashboard02 from "../../assets/dashboard02.png";
 import Online_shopping from "../../assets/Online_shopping_PNG.png";
 import Investment from "../../assets/Investment_PNG.png";
 import saveEarth from "../../assets/save-earth.png";
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSell } from "../../contexts/SellOilRequest";
 import { useForm } from "react-hook-form";
 
@@ -41,7 +41,6 @@ export const SellerDashboard = () => {
   };
 
   const { addOilSeller } = useSell();
-  const ref = useRef(null);
   const [inView, setInView] = useState(false);
 
   const reveal = () => {
@@ -177,6 +176,7 @@ export const SellerDashboard = () => {
                   {...register("amountOfOil")}
                   height="40px"
                   type="number"
+                  error={errors.amountOfOil}
                 />
                 <Button type="submit" width="100%" size="md">
                   RECICLAR ÓLEO
@@ -204,7 +204,7 @@ export const SellerDashboard = () => {
               flexDirection={["column", "column", "row", "row"]}
               bgColor="#19F59A"
             >
-              <SlideFade offsetX="-400px" in={inView}>
+              <SlideFade offsetX="-20px" in={inView}>
                 <Box className="reveal" paddingTop={8} paddingX={8}>
                   <Text
                     bgColor="#F2ECEC"
@@ -232,12 +232,12 @@ export const SellerDashboard = () => {
                 right="50%"
                 bottom="0"
               >
-                <SlideFade offsetY="200px" in={inView}>
+                <SlideFade offsetY="20px" in={inView}>
                   <Image src={dashboard02} />
                 </SlideFade>
               </Box>
 
-              <SlideFade offsetX="400px" in={inView}>
+              <SlideFade offsetX="20px" in={inView}>
                 <Box className="reveal" paddingTop={8} paddingX={8}>
                   <Text
                     bgColor="#F2ECEC"
