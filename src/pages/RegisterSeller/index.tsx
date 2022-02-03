@@ -1,7 +1,34 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useRegisterBuyer } from "../../contexts/RegisterBuyerProvider";
+import { Header } from "../../components/Header";
+import { Input } from "../../components/Input";
+import { Button } from "../../components/Button";
+import oilImg from "../../assets/oleo2.jpg";
+import { Flex, VStack, Grid, Heading, Box } from "@chakra-ui/react";
 import { useRegister } from "../../contexts/RegisterProvider";
+
+const registerSellerSchema = yup.object().shape({
+  name: yup.string().required("campo obrigatório"),
+  lastName: yup.string().required("campo obrigatório"),
+  CPF: yup.string().required("campo obrigatório"),
+  corporateName: yup.string().required("campo obrigatório"),
+  fantasyName: yup.string().required("campo obrigatório"),
+  address: yup.string().required("campo obrigatório"),
+  city: yup.string().required("campo obrigatório"),
+  state: yup.string().required("campo obrigatório"),
+  CEP: yup.string().required("campo obrigatório"),
+
+  email: yup
+    .string()
+    .required("Email obrigatório")
+    .email("Digite um email válido"),
+  password: yup
+    .string()
+    .required("Senha obrigatória")
+    .min(6, "Senha deve ter no mínimo 6 caracteres"),
+});
 interface formData {
   name: string;
   lastName: string;
@@ -25,29 +52,88 @@ const Register = () => {
     register,
     formState: { errors },
   } = useForm<formData>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(registerSellerSchema),
   });
   const subData = (data: formData) => {
     signUp(data);
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit(subData)}>
-        <h1>Cadastro do Vendedor</h1>
-        <input placeholder="Nome" {...register("name")} />
-        <input placeholder="Sobrenome" {...register("lastName")} />
-        <input placeholder="CPF" {...register("CPF")} />
-        <input placeholder="Endereço" {...register("address")} />
-        <input placeholder="Complemento" {...register("complement")} />
-        <input placeholder="Cidade" {...register("city")} />
-        <input placeholder="Estado" {...register("state")} />
-        <input placeholder="CEP" {...register("CEP")} />
-        <input placeholder="Contato" {...register("contact")} />
-        <input placeholder="Email" {...register("email")} />
-        <input placeholder="Senha" {...register("password")} />
-        <button type="submit">Cadastro</button>
-      </form>
-    </div>
+    <>
+      <Flex
+        height="70em"
+        justifyContent="center"
+        alignItems={["flex-start", "flex-start", "center"]}
+        backgroundImage={oilImg}
+        backgroundSize="cover"
+      >
+        <Grid
+          onSubmit={handleSubmit(subData)}
+          as="form"
+          width="600px"
+          alignItems="center"
+          paddingX={[4, 4, 10, 10]}
+          paddingY={8}
+          marginX={[2, 2, 8, 8]}
+          marginTop={[10, 10, 0, 0]}
+          bgColor="rgba(254, 251, 251, 0.85)"
+          textAlign="center"
+        >
+          <VStack spacing="2">
+            <Heading as="h1">Cadastro do Vendedor</Heading>
+            <Input
+              placeholder="Nome"
+              error={errors.name}
+              {...register("name")}
+            />
+            <Input
+              placeholder="Sobrenome"
+              error={errors.lastName}
+              {...register("lastName")}
+            />
+            <Input placeholder="CPF" error={errors.CPF} {...register("CPF")} />
+            <Input
+              placeholder="Endereço"
+              error={errors.address}
+              {...register("address")}
+            />
+            <Input
+              placeholder="Complemento"
+              error={errors.complement}
+              {...register("complement")}
+            />
+            <Input
+              placeholder="Cidade"
+              error={errors.city}
+              {...register("city")}
+            />
+            <Input
+              placeholder="Estado"
+              error={errors.state}
+              {...register("state")}
+            />
+            <Input placeholder="CEP" error={errors.CEP} {...register("CEP")} />
+            <Input
+              placeholder="Contato"
+              error={errors.contact}
+              {...register("contact")}
+            />
+            <Input
+              placeholder="Email"
+              error={errors.email}
+              {...register("email")}
+            />
+            <Input
+              placeholder="Senha"
+              error={errors.password}
+              {...register("password")}
+            />
+            <Button type="submit" onClick={handleSubmit(handleSubmit as any)}>
+              Cadastro
+            </Button>
+          </VStack>
+        </Grid>
+      </Flex>
+    </>
   );
 };
 export default Register;
