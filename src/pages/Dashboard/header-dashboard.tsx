@@ -10,16 +10,24 @@ import {
 } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
 import logo from "../../assets/Logo.png";
-import cart from "../../assets/cart.png";
+import cartLogo from "../../assets/cart.png";
 import { useAuth } from "../../contexts/AuthContext";
 import { ModalSeller } from "../../components/ModalSeller";
 import { ModalBuyer } from "../../components/ModalBuyer";
+import { ModalCart } from "../../components/ModalCart";
+import { useCart } from "../../contexts/CartContext";
 
 export const HeaderDashboard = () => {
   const [isLargerThan769] = useMediaQuery("(min-width: 769px)");
   const { signOut, user } = useAuth();
+  const { cart } = useCart();
   const history = useHistory();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isCartOpen,
+    onOpen: onCartOpen,
+    onClose: onCartClose,
+  } = useDisclosure();
 
   let isBuyer = false;
 
@@ -35,6 +43,7 @@ export const HeaderDashboard = () => {
       ) : (
         <ModalSeller isOpen={isOpen} onClose={onClose} />
       )}
+      <ModalCart isOpen={isCartOpen} onClose={onCartClose} />
 
       <Flex
         h="72px"
@@ -72,7 +81,12 @@ export const HeaderDashboard = () => {
                 </Text>
               </Flex>
             </Flex>
-            <Flex position="relative" alignItems="center" as="button">
+            <Flex
+              position="relative"
+              alignItems="center"
+              as="button"
+              onClick={onCartOpen}
+            >
               <Center
                 as="span"
                 color="white"
@@ -87,9 +101,9 @@ export const HeaderDashboard = () => {
                 paddingX="6px"
                 paddingY="2px"
               >
-                1 {/*  colocar cart.length */}
+                {cart.length}
               </Center>
-              <Image src={cart} w="50px" h="50px" maxWidth="initial" />
+              <Image src={cartLogo} w="50px" h="50px" maxWidth="initial" />
             </Flex>
           </Flex>
         )}

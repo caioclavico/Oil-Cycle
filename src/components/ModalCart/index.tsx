@@ -1,79 +1,122 @@
-import { ReactNode, useEffect, useState } from "react";
-import { Box, Heading, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Center,
+  Flex,
+  Icon,
+  Image,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  Text,
+} from "@chakra-ui/react";
+import { useCart } from "../../contexts/CartContext";
+import { useAuth } from "../../contexts/AuthContext";
+import { FaTimes } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import garrafasOleo from "../../assets/garrafas-oleo.png";
 
-interface ModalProps {
-  title: string;
-  show: boolean;
-  onClose: Function;
-  children: ReactNode;
+interface ModalCartProps {
+  isOpen: boolean;
+  onClose: () => void;
 }
+export const ModalCart = ({ isOpen, onClose }: ModalCartProps) => {
+  const { cart, removeProduct, removeAll } = useCart();
 
-export const ModalCart = ({ title, show, onClose, children }: ModalProps) => {
-  const [visible, setVisible] = useState(false);
+  const { accessToken } = useAuth();
 
-  const handleClose = () => {
-    setVisible(false);
-    onClose(false);
-  };
-
-  useEffect(() => {
-    setVisible(show);
-  }, [show]);
+  const total = cart.reduce((anterior, atual) => {
+    return atual.amountOfOil + anterior;
+  }, 0);
 
   return (
-    <Box
-      visibility={visible ? "visible" : "hidden"}
-      opacity={visible ? "1" : "0"}
-      transition="opacity 500ms"
-      bg="rgba(0, 0, 0, 0.7)"
-      position="absolute"
-      top="0"
-      right="0"
-      bottom="0"
-      left="0"
-    >
-      <Box
-        m="70px auto"
-        bg="#fff"
-        borderRadius="5px"
-        position="relative"
-        transition="all 5s ease-in-out"
-        overflow="auto"
-        w="50%"
-        maxH="50%"
-      >
-        <Heading
-          as="h2"
-          mt="0"
-          color="#333"
-          fontSize="20px"
-          ml="30px"
-          textAlign="left"
-          transform="translateY(21px)"
+    <Modal isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay />
+      <ModalContent bg="white" color="gray.800" borderRadius="5px">
+        <ModalHeader
+          display="flex"
+          bgColor="primary.main"
+          borderTopRadius="5px"
         >
-          {title}
-        </Heading>
-        <Text
-          as="span"
-          onClick={handleClose}
-          position="absolute"
-          top="10px"
-          right="30px"
-          transition="all 200ms"
-          fontSize="32px"
-          fontWeight="bold"
-          textDecor="none"
-          color="#f00"
-          _hover={{
-            cursor: "pointer",
-            filter: "brightness(75%)",
-            transition: "0.5s",
-          }}
-        >
-          &times;
-        </Text>
-        <Box overflow="auto">{children}</Box>
-      </Box>
-    </Box>
+          <Text fontWeight="bold" ml="2" color="white">
+            Carrinho de compras
+          </Text>
+          <Center
+            onClick={onClose}
+            as="button"
+            ml="auto"
+            w="32px"
+            h="32px"
+            bg="transparent"
+            fontSize="lg"
+            borderRadius="md"
+            color="white"
+          >
+            <FaTimes />
+          </Center>
+        </ModalHeader>
+
+        <ModalBody textAlign="center" padding="20px 25px">
+          {!cart.length ? (
+            <>
+              <Text textStyle="h3">Sua sacola esta vazia</Text>
+              <Text textStyle="caption" align="center" mt="4">
+                Adicione itens
+              </Text>
+            </>
+          ) : (
+            <>
+              {cart.map((product) => (
+                <Flex
+                  key={product.id}
+                  flexDirection="row"
+                  mb="10px"
+                  justifyContent="space-between"
+                >
+                  <Flex>
+                    <Center
+                      bgColor="#E0E0E0"
+                      height="80px"
+                      width="82px"
+                      borderRadius="5px"
+                    >
+                      <Image src={garrafasOleo} />
+                    </Center>
+                    <Flex
+                      ml="10px"
+                      flexDirection="column"
+                      alignItems="flex-start"
+                    >
+                      <Text textStyle="h3">Vendedor: {product.seller}</Text>
+                      <Text>Quantidade: {product.amountOfOil}</Text>
+                    </Flex>
+                  </Flex>
+                  <Box
+                    as="button"
+                    onClick={() => removeProduct(product.id, accessToken)}
+                  >
+                    <Icon as={MdDelete} color="gray.300" boxSize={5} />
+                  </Box>
+                </Flex>
+              ))}
+              <hr style={{ border: "1px solid #e0e0e0", width: "100%" }}></hr>
+              <Flex justifyContent="space-between" mt="15px" mb="20px">
+                <Text textStyle="body" fontWeight="600">
+                  Total
+                </Text>
+                <Text textStyle="body" color="gray.300" fontWeight="600">
+                  {total} Litros
+                </Text>
+              </Flex>
+              <Button size="lg" variant="disable" onClick={() => removeAll()}>
+                Remover todos
+              </Button>
+            </>
+          )}
+        </ModalBody>
+      </ModalContent>
+    </Modal>
   );
 };

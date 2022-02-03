@@ -20,7 +20,7 @@ interface Product {
 
 interface CartProviderData {
   cart: Product[];
-  loadCart: (userId: string, accessToken: string) => Promise<void>;
+  loadCart: (userId: number, accessToken: string) => Promise<void>;
   addProduct: (data: Product, accessToken: string) => Promise<void>;
   removeProduct: (productId: number, accessToken: string) => Promise<void>;
   removeAll: () => Promise<void>;
@@ -40,7 +40,7 @@ export const useCart = () => {
 export const CartProvider = ({ children }: CartProviderProps) => {
   const [cart, setCart] = useState<Product[]>([]);
 
-  const loadCart = useCallback(async (userId: string, accessToken: string) => {
+  const loadCart = useCallback(async (userId: number, accessToken: string) => {
     try {
       const response = await api.get(`/cart?userId=${userId}`, {
         headers: {
