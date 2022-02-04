@@ -10,7 +10,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useHistory, useLocation } from "react-router-dom";
-import oilHome from "../../assets/oil-home.jpg";
+import oilHome from "../../assets/oil-home.png";
 import oilBg from "../../assets/oleo2.jpg";
 import { Header } from "../../components/Header";
 
