@@ -79,9 +79,9 @@ export const Header = () => {
               </Text>
               <Text as="button" _hover={{ transform: "translateY(-4px)" }}>
                 {isHome ? (
-                  <Link href="#register">CADASTRO</Link>
+                  <Link onClick={() => history.push("/signup")}>CADASTRO</Link>
                 ) : (
-                  <Link href="/#register">CADASTRO</Link>
+                  <Link onClick={() => history.push("/signup")}>CADASTRO</Link>
                 )}
               </Text>
             </HStack>

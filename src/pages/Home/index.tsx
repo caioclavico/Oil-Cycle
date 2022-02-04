@@ -55,6 +55,7 @@ export const Home = () => {
           backgroundPosition="center"
           backgroundRepeat="no-repeat"
           backgroundSize="cover"
+          backgroundColor="#f1b900"
         >
           <VStack mt="4" spacing={["4", "4", "10"]}>
             <Heading
@@ -126,22 +127,30 @@ export const Home = () => {
             </Button>
           </VStack>
         </Flex>
-        <Flex justifyContent={["flex-start", "flex-start", "center"]}>
+        <Flex
+          justifyContent={["flex-start", "flex-start", "center"]}
+          position="relative"
+          backgroundColor="#f1b900"
+        >
           <Heading
             fontSize={["20px", "30px", "48px"]}
             fontFamily="bodySecondary"
             fontWeight="400"
             textAlign="center"
           >
-            <Text id="about-us" mt="10px">
-              SOBRE NÓS
-            </Text>
+            <Text
+              id="about-us"
+              mt="10px"
+              position="absolute"
+              top="-70px"
+            ></Text>
+            <Text mt="10">SOBRE NÓS</Text>
             <Text
               fontSize={["10px", "20px", "28px"]}
               mt="40px"
               fontFamily="body"
             >
-              A Oil Cicly é formada por um grupo de jovens preocupados com o
+              A Oil Cycle é formada por um grupo de jovens preocupados com o
               <br />
               meio ambiente e que por meio da tecnologia estão trabalhando para
               <br />
@@ -275,14 +284,25 @@ export const Home = () => {
             </HStack>
           </Heading>
         </Flex>
-        <Flex h="100vh" justifyContent={["flex-start", "flex-start", "center"]}>
+        <Flex
+          minHeight="100vh"
+          justifyContent={["flex-start", "flex-start", "center"]}
+          position="relative"
+          backgroundColor="#f1b900"
+        >
           <Heading
             fontSize={["20px", "30px", "48px"]}
             fontFamily="bodySecondary"
             fontWeight="400"
             textAlign="center"
           >
-            <Text id="how-it-works" mt="30px"></Text>
+            <Text
+              id="how-it-works"
+              mt="10px"
+              position="absolute"
+              top="-70px"
+            ></Text>
+            <Text mt="30px"></Text>
             COMO FUNCIONA
             <Text
               fontSize={["10px", "20px", "28px"]}
@@ -342,13 +362,19 @@ export const Home = () => {
             </Text>
           </Heading>
         </Flex>
-        <Flex h="100vh" justifyContent={["flex-start", "flex-start", "center"]}>
+        <Flex
+          h="100vh"
+          justifyContent={["flex-start", "flex-start", "center"]}
+          position="relative"
+          w="100vw"
+        >
           <Heading
             fontSize={["20px", "30px", "48px"]}
             fontFamily="bodySecondary"
             fontWeight="400"
-            position="relative"
             textAlign="center"
+            backgroundColor="#f1b900"
+            width="100%"
           >
             <Text id="contact" position="absolute" top="-70px"></Text>
             CONTATO
@@ -361,20 +387,9 @@ export const Home = () => {
               <br />
               Telefone: (11) 3244 - 5599
               <br />
-              emil: contato@oilcicly.com.br
+              emil: contato@oilcycle.com.br
               <br />{" "}
             </Text>
-          </Heading>
-        </Flex>
-        <Flex h="100vh" justifyContent={["flex-start", "flex-start", "center"]}>
-          <Heading
-            fontSize={["20px", "30px", "48px"]}
-            fontFamily="bodySecondary"
-            fontWeight="400"
-            position="relative"
-          >
-            <Text id="register" position="absolute" top="-70px"></Text>
-            <Link onClick={() => history.push("/signup")}>REGISTRO</Link>
           </Heading>
         </Flex>
       </Flex>
