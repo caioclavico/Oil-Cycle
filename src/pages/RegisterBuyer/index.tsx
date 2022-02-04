@@ -101,7 +101,7 @@ const RegisterBuyer = () => {
           textAlign="center"
         >
           <VStack spacing="2">
-            <Heading as="h1">Cadastro do Vendedor</Heading>
+            <Heading as="h1">Cadastro do Comprador</Heading>
 
             <Input
               placeholder="João"
@@ -184,7 +184,7 @@ const RegisterBuyer = () => {
               error={errors.password}
               {...register("password")}
             />
-            <Button type="submit" onClick={handleSubmit(handleSubmit as any)}>
+            <Button type="submit" onClick={handleSubmit(subData)}>
               Cadastro
             </Button>
           </VStack>

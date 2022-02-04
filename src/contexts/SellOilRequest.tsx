@@ -16,10 +16,16 @@ interface Props {
 interface SellerFuncs {
   addOilSeller: (data: SaleData) => void;
   getOilSeller: (accessToken: string) => void;
+  attOilSeller: (
+    data: IAttSaleData,
+    id: number,
+    quantity: number,
+    accessToken: string
+  ) => void;
   product: IProduct[];
 }
 interface SaleData {
-  seller: string;
+  name: string;
   amountOfOil: number;
   userId: number;
 }
@@ -32,6 +38,10 @@ interface IProduct {
   amountOfOil: number;
   userId: string;
   id: number;
+}
+interface IAttSaleData {
+  amountOfOil: number;
+  userId: number;
 }
 
 const SellerProvider = ({ children }: Props) => {
@@ -59,6 +69,30 @@ const SellerProvider = ({ children }: Props) => {
       .catch((err) => console.log(err));
   };
 
+  const attOilSeller = useCallback(
+    async (
+      data: IAttSaleData,
+      id: number,
+      quantity: number,
+      accessToken: string
+    ) => {
+      await api
+        .patch(
+          `/oilSale/${id}`,
+          {
+            amountOfOil: data.amountOfOil - quantity,
+            userId: id,
+          },
+          {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          }
+        )
+        .then((response) => console.log(response.data))
+        .catch((err) => console.log(err));
+    },
+    []
+  );
+
   const getOilSeller = useCallback(async (accessToken) => {
     await api
       .get("/oilSale", {
@@ -70,7 +104,9 @@ const SellerProvider = ({ children }: Props) => {
   }, []);
 
   return (
-    <SellerOilContext.Provider value={{ addOilSeller, getOilSeller, product }}>
+    <SellerOilContext.Provider
+      value={{ addOilSeller, getOilSeller, product, attOilSeller }}
+    >
       {children}
     </SellerOilContext.Provider>
   );

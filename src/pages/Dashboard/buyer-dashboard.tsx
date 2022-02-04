@@ -21,12 +21,12 @@ import { useEffect } from "react";
 
 export const BuyerDashboard = () => {
   const [isLargerThan769] = useMediaQuery("(min-width: 769px)");
-  const { signOut, accessToken } = useAuth();
+  const { signOut, accessToken, id } = useAuth();
   const { product, getOilSeller } = useSell();
 
   useEffect(() => {
     getOilSeller(accessToken);
-  }, []);
+  }, [product]);
 
   return (
     <>
@@ -112,6 +112,9 @@ export const BuyerDashboard = () => {
                   cep={item.CEP}
                   state={item.state}
                   amountOfOil={item.amountOfOil}
+                  userId={id}
+                  accessToken={accessToken}
+                  id={item.id}
                 />
               </Box>
             ))}
@@ -122,11 +125,10 @@ export const BuyerDashboard = () => {
           <Flex
             bg="gray.10"
             w="100%"
-            h="2500"
             color="primary.main"
             justifyContent="center"
             position="relative"
-            top="70px"
+            top="177px"
           >
             <Flex
               bg="secondary.main"
@@ -177,9 +179,8 @@ export const BuyerDashboard = () => {
             </Flex>
             <Flex
               position="relative"
-              top="150px"
               justifyContent="center"
-              m="0 auto"
+              m="10px auto"
               flexDirection="column"
               gap={5}
             >
@@ -191,6 +192,9 @@ export const BuyerDashboard = () => {
                     cep={item.CEP}
                     state={item.state}
                     amountOfOil={item.amountOfOil}
+                    userId={id}
+                    accessToken={accessToken}
+                    id={item.id}
                   />
                 </Box>
               ))}

@@ -31,7 +31,6 @@ const RegisterProvider = ({ children }: RegisterProps) => {
   const history = useHistory();
   const signUp = (data: formData) => {
     api.post("/users", data).then((response) => {
-      console.log(response.data);
       history.push("/login");
     });
   };

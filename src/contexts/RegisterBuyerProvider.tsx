@@ -32,7 +32,6 @@ const RegisterBuyerProvider = ({ children }: RegisterProps) => {
   const history = useHistory();
   const signUpBuy = (data: formData) => {
     api.post("/register", data).then((response) => {
-      console.log(response.data);
       history.push("/login");
     });
   };
