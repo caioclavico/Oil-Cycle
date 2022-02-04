@@ -6,13 +6,12 @@ import { Button } from "../../components/Button";
 import oilImg from "../../assets/oleo2.jpg";
 import { Flex, VStack, Grid, Heading, Box } from "@chakra-ui/react";
 import { useRegister } from "../../contexts/RegisterProvider";
+import { Header } from "../../components/Header";
 
 const registerSellerSchema = yup.object().shape({
   name: yup.string().required("campo obrigatório"),
   lastName: yup.string().required("campo obrigatório"),
   CPF: yup.string().required("campo obrigatório"),
-  corporateName: yup.string().required("campo obrigatório"),
-  fantasyName: yup.string().required("campo obrigatório"),
   address: yup.string().required("campo obrigatório"),
   city: yup.string().required("campo obrigatório"),
   state: yup.string().required("campo obrigatório"),
@@ -57,6 +56,7 @@ const Register = () => {
   };
   return (
     <>
+      <Header />
       <Flex
         height="70em"
         justifyContent="center"
@@ -127,7 +127,7 @@ const Register = () => {
               error={errors.password}
               {...register("password")}
             />
-            <Button type="submit" onClick={handleSubmit(handleSubmit as any)}>
+            <Button type="submit" onClick={handleSubmit(subData)}>
               Cadastro
             </Button>
           </VStack>

@@ -22,13 +22,15 @@ interface ModalCartProps {
   isOpen: boolean;
   onClose: () => void;
 }
+
 export const ModalCart = ({ isOpen, onClose }: ModalCartProps) => {
   const { cart, removeProduct, removeAll } = useCart();
+  console.log(cart);
 
   const { accessToken } = useAuth();
 
   const total = cart.reduce((anterior, atual) => {
-    return atual.amountOfOil + anterior;
+    return atual.quantity + anterior;
   }, 0);
 
   return (
@@ -89,8 +91,8 @@ export const ModalCart = ({ isOpen, onClose }: ModalCartProps) => {
                       flexDirection="column"
                       alignItems="flex-start"
                     >
-                      <Text textStyle="h3">Vendedor: {product.seller}</Text>
-                      <Text>Quantidade: {product.amountOfOil}</Text>
+                      <Text textStyle="h3">Vendedor: {product.name}</Text>
+                      <Text>Quantidade: {product.quantity}L</Text>
                     </Flex>
                   </Flex>
                   <Box

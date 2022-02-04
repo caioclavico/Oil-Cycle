@@ -24,7 +24,7 @@ import { useSell } from "../../contexts/SellOilRequest";
 import { useForm } from "react-hook-form";
 
 interface SaleData {
-  seller: string;
+  name: string;
   amountOfOil: number;
   userId: number;
 }

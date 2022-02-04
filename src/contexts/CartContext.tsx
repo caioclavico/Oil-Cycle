@@ -13,16 +13,20 @@ interface CartProviderProps {
 }
 
 interface Product {
-  seller: string;
-  amountOfOil: number;
-  id: number;
+  name: string;
+  quantity: number;
+  userId: number;
+  id?: number;
 }
 
 interface CartProviderData {
   cart: Product[];
   loadCart: (userId: number, accessToken: string) => Promise<void>;
   addProduct: (data: Product, accessToken: string) => Promise<void>;
-  removeProduct: (productId: number, accessToken: string) => Promise<void>;
+  removeProduct: (
+    productId: number | undefined,
+    accessToken: string
+  ) => Promise<void>;
   removeAll: () => Promise<void>;
 }
 
@@ -67,7 +71,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
   }, []);
 
   const removeProduct = useCallback(
-    async (productId: number, accessToken: string) => {
+    async (productId, accessToken: string) => {
       await api
         .delete(`/cart/${productId}`, {
           headers: {
