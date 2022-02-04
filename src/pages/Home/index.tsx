@@ -1,6 +1,8 @@
 import {
+  Avatar,
   Box,
   Button,
+  Center,
   Flex,
   Heading,
   HStack,
@@ -9,10 +11,17 @@ import {
   useMediaQuery,
   VStack,
 } from "@chakra-ui/react";
+import { FaLinkedin } from "react-icons/fa";
 import { useHistory, useLocation } from "react-router-dom";
 import oilHome from "../../assets/oil-home.png";
 import oilBg from "../../assets/oleo2.jpg";
 import { Header } from "../../components/Header";
+import caio from "../../assets/caio.png";
+import gabriel from "../../assets/gabriel.png";
+import ian from "../../assets/ian.jpeg";
+import robert from "../../assets/robert.jpeg";
+import samuel from "../../assets/samuel.jpeg";
+import victor from "../../assets/victor.jpeg";
 
 export const Home = () => {
   const history = useHistory();
@@ -117,24 +126,16 @@ export const Home = () => {
             </Button>
           </VStack>
         </Flex>
-        <Flex
-          h="100vh"
-          justifyContent={["flex-start", "flex-start", "center"]}
-          position="relative"
-        >
+        <Flex justifyContent={["flex-start", "flex-start", "center"]}>
           <Heading
             fontSize={["20px", "30px", "48px"]}
             fontFamily="bodySecondary"
             fontWeight="400"
             textAlign="center"
           >
-            <Text
-              id="about-us"
-              position="absolute"
-              top="-70px"
-              mt="10px"
-            ></Text>
-            SOBRE NÓS
+            <Text id="about-us" mt="10px">
+              SOBRE NÓS
+            </Text>
             <Text
               fontSize={["10px", "20px", "28px"]}
               mt="40px"
@@ -165,6 +166,7 @@ export const Home = () => {
             <Text
               fontSize={["10px", "20px", "28px"]}
               mt="40px"
+              mb={12}
               fontFamily="body"
             >
               Adote esse idéia, venha conosco e comece agora mesmo a
@@ -173,6 +175,104 @@ export const Home = () => {
               <br />
               beneficios super legais que a nossa plataforma proporciona.{" "}
             </Text>
+            <HStack flexWrap="wrap" justifyContent="center" gap={4} mb="30px">
+              <Center flexDirection="column" marginTop={10} width="250px">
+                <Avatar size="2xl" src={samuel} />
+                <Flex gap="10px" alignItems="center">
+                  <Text textStyle="h1">Samuel Manga</Text>
+                  <Link
+                    href="https://www.linkedin.com/in/samuel-manga-rodrigues-09951b18a"
+                    isExternal
+                    color="#0e76a8"
+                  >
+                    <Center w="32px">
+                      <FaLinkedin />
+                    </Center>
+                  </Link>
+                </Flex>
+                <Text textStyle="headline">Product Owner</Text>
+              </Center>
+              <Center flexDirection="column" marginY={10} width="250px">
+                <Avatar size="2xl" src={caio} />
+                <Flex gap="10px" alignItems="center">
+                  <Text textStyle="h1">Caio Clavico</Text>
+                  <Link
+                    href="https://www.linkedin.com/in/caio-henrique-clavico-crizanto/"
+                    isExternal
+                    color="#0e76a8"
+                  >
+                    <Center w="32px">
+                      <FaLinkedin />
+                    </Center>
+                  </Link>
+                </Flex>
+                <Text textStyle="headline">Scrom Master</Text>
+              </Center>
+              <Center flexDirection="column" marginY={10} width="250px">
+                <Avatar size="2xl" src={victor} />
+                <Flex gap="10px" alignItems="center">
+                  <Text textStyle="h1">Victor Nunes</Text>
+                  <Link
+                    href="https://www.linkedin.com/in/victorncosta/"
+                    isExternal
+                    color="#0e76a8"
+                  >
+                    <Center w="32px">
+                      <FaLinkedin />
+                    </Center>
+                  </Link>
+                </Flex>
+                <Text textStyle="headline">Team Leader</Text>
+              </Center>
+              <Center flexDirection="column" marginY={10} width="250px">
+                <Avatar size="2xl" src={robert} />
+                <Flex gap="10px" alignItems="center">
+                  <Text textStyle="h1">Robert Popu</Text>
+                  <Link
+                    href="https://www.linkedin.com/in/robertpupo/"
+                    isExternal
+                    color="#0e76a8"
+                  >
+                    <Center w="32px">
+                      <FaLinkedin />
+                    </Center>
+                  </Link>
+                </Flex>
+                <Text textStyle="headline">Quality Assurance</Text>
+              </Center>
+              <Center flexDirection="column" marginY={10} width="250px">
+                <Avatar size="2xl" src={gabriel} />
+                <Flex gap="10px" alignItems="center">
+                  <Text textStyle="h1">Gabriel Ricardo</Text>
+                  <Link
+                    href="https://www.linkedin.com"
+                    isExternal
+                    color="#0e76a8"
+                  >
+                    <Center w="32px">
+                      <FaLinkedin />
+                    </Center>
+                  </Link>
+                </Flex>
+                <Text textStyle="headline">Quality Assurance</Text>
+              </Center>
+              <Center flexDirection="column" marginY={10} width="250px">
+                <Avatar size="2xl" src={ian} />
+                <Flex gap="10px" alignItems="center">
+                  <Text textStyle="h1">Ian Kuntz</Text>
+                  <Link
+                    href="https://www.linkedin.com"
+                    isExternal
+                    color="#0e76a8"
+                  >
+                    <Center w="32px">
+                      <FaLinkedin />
+                    </Center>
+                  </Link>
+                </Flex>
+                <Text textStyle="headline">Quality Assurance</Text>
+              </Center>
+            </HStack>
           </Heading>
         </Flex>
         <Flex h="100vh" justifyContent={["flex-start", "flex-start", "center"]}>
@@ -180,10 +280,9 @@ export const Home = () => {
             fontSize={["20px", "30px", "48px"]}
             fontFamily="bodySecondary"
             fontWeight="400"
-            position="relative"
             textAlign="center"
           >
-            <Text id="how-it-works" position="absolute" top="-70px"></Text>
+            <Text id="how-it-works" mt="30px"></Text>
             COMO FUNCIONA
             <Text
               fontSize={["10px", "20px", "28px"]}
