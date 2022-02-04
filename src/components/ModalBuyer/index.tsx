@@ -13,6 +13,7 @@ import {
   useMediaQuery,
 } from "@chakra-ui/react";
 import { FaTimes } from "react-icons/fa";
+import { useHistory } from "react-router-dom";
 import gotaDeOleo from "../../assets/gota-de-oleo.png";
 import heroi from "../../assets/heroi_boneco.png";
 import modalBuyerImg from "../../assets/modal-buyer-img.png";
@@ -26,6 +27,7 @@ interface ModalSellerProps {
 export const ModalBuyer = ({ isOpen, onClose }: ModalSellerProps) => {
   const { user } = useAuth();
   const [isLargerThan769] = useMediaQuery("(min-width: 768px)");
+  const history = useHistory();
 
   let responsive = {
     backgroundColor: "",
@@ -99,7 +101,14 @@ export const ModalBuyer = ({ isOpen, onClose }: ModalSellerProps) => {
               </VStack>
               {isLargerThan769 && (
                 <>
-                  <Button>Procurar vendedores</Button>
+                  <Button
+                    onClick={() => {
+                      onClose();
+                      history.push("/dashboard");
+                    }}
+                  >
+                    Procurar vendedores
+                  </Button>
                 </>
               )}
             </Flex>
@@ -164,7 +173,14 @@ export const ModalBuyer = ({ isOpen, onClose }: ModalSellerProps) => {
                   </Center>
                 ) : (
                   <Center width="100%">
-                    <Button>Procurar vendedores</Button>
+                    <Button
+                      onClick={() => {
+                        onClose();
+                        history.push("/dashboard");
+                      }}
+                    >
+                      Procurar vendedores
+                    </Button>
                   </Center>
                 )}
               </VStack>

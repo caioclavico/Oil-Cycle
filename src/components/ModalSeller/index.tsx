@@ -18,6 +18,7 @@ import heroi from "../../assets/heroi_boneco.png";
 import modalSellerImg from "../../assets/modal-seller-img.png";
 import gotaPoints from "../../assets/gota.png";
 import { useAuth } from "../../contexts/AuthContext";
+import { useHistory } from "react-router-dom";
 
 interface ModalSellerProps {
   isOpen: boolean;
@@ -27,6 +28,7 @@ interface ModalSellerProps {
 export const ModalSeller = ({ isOpen, onClose }: ModalSellerProps) => {
   const { user } = useAuth();
   const [isLargerThan769] = useMediaQuery("(min-width: 768px)");
+  const history = useHistory();
 
   let responsive = {
     backgroundColor: "",
@@ -100,8 +102,22 @@ export const ModalSeller = ({ isOpen, onClose }: ModalSellerProps) => {
               </VStack>
               {isLargerThan769 && (
                 <>
-                  <Button>Trocar meus pontos</Button>
-                  <Button>Reciclar óleo</Button>
+                  <Button
+                    onClick={() => {
+                      onClose();
+                      history.push("/shop");
+                    }}
+                  >
+                    Trocar meus pontos
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      history.push("/dashboard");
+                      onClose();
+                    }}
+                  >
+                    Reciclar óleo
+                  </Button>
                 </>
               )}
             </Flex>
@@ -186,8 +202,22 @@ export const ModalSeller = ({ isOpen, onClose }: ModalSellerProps) => {
                   </Center>
                 ) : (
                   <Center flexDirection="column" width="100%" gap="15px">
-                    <Button>Trocar meus pontos</Button>
-                    <Button>Reciclar óleo</Button>
+                    <Button
+                      onClick={() => {
+                        onClose();
+                        history.push("/shop");
+                      }}
+                    >
+                      Trocar meus pontos
+                    </Button>
+                    <Button
+                      onClick={() => {
+                        history.push("/dashboard");
+                        onClose();
+                      }}
+                    >
+                      Reciclar óleo
+                    </Button>
                   </Center>
                 )}
               </VStack>
