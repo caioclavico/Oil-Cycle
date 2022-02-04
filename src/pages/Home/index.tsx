@@ -9,8 +9,8 @@ import {
   useMediaQuery,
   VStack,
 } from "@chakra-ui/react";
-import { useHistory } from "react-router-dom";
-import oilHome from "../../assets/oil-home.jpg";
+import { useHistory, useLocation } from "react-router-dom";
+import oilHome from "../../assets/oil-home.png";
 import oilBg from "../../assets/oleo2.jpg";
 import { Header } from "../../components/Header";
 
@@ -27,11 +27,11 @@ export const Home = () => {
   if (isLargerThan769) {
     responsive.backgroundImage = oilHome;
     responsive.backgroundColor = "";
-    responsive.backgroundButton = "rgba(214, 248, 234, 0.8)";
+    responsive.backgroundButton = "rgba(25, 245, 154, 0.8)";
   } else {
     responsive.backgroundColor = "#EDC201";
     responsive.backgroundImage = "";
-    responsive.backgroundButton = "rgba(25, 245, 154, 0.8)";
+    responsive.backgroundButton = "primary.main";
   }
 
   return (
@@ -103,6 +103,7 @@ export const Home = () => {
               </HStack>
             </Flex>
             <Button
+              onClick={() => history.push("/login")}
               w="100%"
               maxWidth="738px"
               h="84px"
@@ -125,9 +126,53 @@ export const Home = () => {
             fontSize={["20px", "30px", "48px"]}
             fontFamily="bodySecondary"
             fontWeight="400"
+            textAlign="center"
           >
-            <Text id="about-us" position="absolute" top="-70px"></Text>
+            <Text
+              id="about-us"
+              position="absolute"
+              top="-70px"
+              mt="10px"
+            ></Text>
             SOBRE NÓS
+            <Text
+              fontSize={["10px", "20px", "28px"]}
+              mt="40px"
+              fontFamily="body"
+            >
+              A Oil Cicly é formada por um grupo de jovens preocupados com o
+              <br />
+              meio ambiente e que por meio da tecnologia estão trabalhando para
+              <br />
+              alcançar solução de um grave problema: O descarte inconciente que
+              <br />
+              óleo usado de cozinha.
+            </Text>
+            <Text
+              fontSize={["10px", "20px", "28px"]}
+              mt="40px"
+              fontFamily="body"
+            >
+              Em nosso dia a dia não percebemos mas esse descarte inadequado
+              <br />
+              é um problema muito grave que contamina nosso lar o planeta
+              <br />
+              Terra, para se ter noção 1 litro de óleo consegue contaminar 25
+              mil
+              <br />
+              litros de água, isso é muito coisa !!
+            </Text>
+            <Text
+              fontSize={["10px", "20px", "28px"]}
+              mt="40px"
+              fontFamily="body"
+            >
+              Adote esse idéia, venha conosco e comece agora mesmo a
+              <br />
+              reciclar seu óleo de cozinha ajude o meio ambiente e aproveite os
+              <br />
+              beneficios super legais que a nossa plataforma proporciona.{" "}
+            </Text>
           </Heading>
         </Flex>
         <Flex h="100vh" justifyContent={["flex-start", "flex-start", "center"]}>
@@ -136,9 +181,66 @@ export const Home = () => {
             fontFamily="bodySecondary"
             fontWeight="400"
             position="relative"
+            textAlign="center"
           >
             <Text id="how-it-works" position="absolute" top="-70px"></Text>
             COMO FUNCIONA
+            <Text
+              fontSize={["10px", "20px", "28px"]}
+              mt="40px"
+              fontFamily="body"
+            >
+              A Oil Cycle é a solução completa para reciclagem de óleo usado,
+              aqui nós
+              <br />
+              ligamos quem recolhe e faz a reciclagem do óleo com aqueles que
+              juntam e
+              <br />
+              acumulam esse óleo para descarte consciente.
+            </Text>
+            <Text
+              fontSize={["10px", "20px", "28px"]}
+              mt="40px"
+              fontFamily="body"
+            >
+              <br />
+              Se você tem interesse em comprar o óleo faça seu cadacastro como
+              comprador preenchendo
+              <br />
+              corretamente as informações requisitadas, e pronto! Tudo certo
+              para você iniciar
+              <br />
+              essa parceiria conosco.
+            </Text>
+            <Text
+              fontSize={["10px", "20px", "28px"]}
+              mt="40px"
+              fontFamily="body"
+            >
+              Como comprador você terá acesso aos vendedores mais próximos de
+              você e poderá
+              <br />
+              reservar o óleo que eles guardaram e agendar a retirada.
+            </Text>
+            <Text
+              fontSize={["10px", "20px", "28px"]}
+              mt="40px"
+              fontFamily="body"
+            >
+              Se você tem interesse em disponibilizar o seu faça o cadastro
+              <br />
+              como vendedor, dessa forma sempre que você cadastrar um novo lote
+              de óleo ficará
+              <br />
+              disponível para os possíveis compradores, ao vender seu óleo você
+              ganhará Oil Points
+              <br />
+              que poderão ser trocados por variados produtos e cupons de
+              desconto de nossa rede
+              <br />
+              de parceiros.
+              <br />{" "}
+            </Text>
           </Heading>
         </Flex>
         <Flex h="100vh" justifyContent={["flex-start", "flex-start", "center"]}>
@@ -147,9 +249,22 @@ export const Home = () => {
             fontFamily="bodySecondary"
             fontWeight="400"
             position="relative"
+            textAlign="center"
           >
             <Text id="contact" position="absolute" top="-70px"></Text>
             CONTATO
+            <Text
+              fontSize={["10px", "20px", "28px"]}
+              mt="40px"
+              fontFamily="body"
+            >
+              Entre em contato conosco nos seguintes canais
+              <br />
+              Telefone: (11) 3244 - 5599
+              <br />
+              emil: contato@oilcicly.com.br
+              <br />{" "}
+            </Text>
           </Heading>
         </Flex>
         <Flex h="100vh" justifyContent={["flex-start", "flex-start", "center"]}>

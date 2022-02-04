@@ -2,8 +2,32 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRegisterBuyer } from "../../contexts/RegisterBuyerProvider";
+import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
+import oilImg from "../../assets/oleo2.jpg";
+import { Flex, VStack, Grid, Heading, Box } from "@chakra-ui/react";
+
+const registerBuyerSchema = yup.object().shape({
+  name: yup.string().required("campo obrigatório"),
+  lastName: yup.string().required("campo obrigatório"),
+  CNPJ: yup.string().required("campo obrigatório"),
+  corporateName: yup.string().required("campo obrigatório"),
+  fantasyName: yup.string().required("campo obrigatório"),
+  address: yup.string().required("campo obrigatório"),
+  city: yup.string().required("campo obrigatório"),
+  state: yup.string().required("campo obrigatório"),
+  CEP: yup.string().required("campo obrigatório"),
+
+  email: yup
+    .string()
+    .required("Email obrigatório")
+    .email("Digite um email válido"),
+  password: yup
+    .string()
+    .required("Senha obrigatória")
+    .min(6, "Senha deve ter no mínimo 6 caracteres"),
+});
 interface formData {
   name: string;
   lastName: string;
@@ -22,37 +46,151 @@ interface formData {
 
 const RegisterBuyer = () => {
   const { signUpBuy } = useRegisterBuyer();
-  const schema = yup.object().shape({});
+  const schema = yup.object().shape({
+    name: yup.string().required("Campo obrigatório"),
+    lastName: yup.string().required("Campo obrigatório"),
+    CNPJ: yup.string().required("Campo obrigatório").min(14, "CNPJ inválido"),
+    corporateName: yup.string().required("Campo obrigatório"),
+    fantasyName: yup.string().required("Campo obrigatório"),
+    address: yup.string().required("Campo obrigatório"),
+    complement: yup.string().required("Campo obrigatório"),
+    city: yup.string().required("Campo obrigatório"),
+    state: yup.string().required("Campo obrigatório"),
+    CEP: yup
+      .string()
+      .required("Campo obrigatório")
+      .min(8, "Mínimo de 8 dígitos"),
+    contact: yup.string().required("Campo obrigatório"),
+    email: yup.string().required("Campo obrigatório").email("Email inválido"),
+    password: yup
+      .string()
+      .required("Campo obrigatório")
+      .min(8, "Mínimo 8 dígitos"),
+  });
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm<formData>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(registerBuyerSchema),
   });
   const subData = (data: formData) => {
     signUpBuy(data);
   };
+
   return (
-    <div>
-      <form onSubmit={handleSubmit(subData)}>
-        <h1>Cadastro do Vendedor</h1>
-        <Input placeholder="Nome" {...register("name")} />
-        <Input placeholder="Sobrenome" {...register("lastName")} />
-        <Input placeholder="CNPJ" {...register("CNPJ")} />
-        <Input placeholder="Razão Social" {...register("corporateName")} />
-        <Input placeholder="Nome Fantasia" {...register("fantasyName")} />
-        <Input placeholder="Endereço" {...register("address")} />
-        <Input placeholder="Complemento" {...register("complement")} />
-        <Input placeholder="Cidade" {...register("city")} />
-        <Input placeholder="Estado" {...register("state")} />
-        <Input placeholder="CEP" {...register("CEP")} />
-        <Input placeholder="Contato" {...register("contact")} />
-        <Input placeholder="Email" {...register("email")} />
-        <Input placeholder="Senha" {...register("password")} />
-        <Button type="submit">Cadastro</Button>
-      </form>
-    </div>
+    <>
+      <Header />
+
+      <Flex
+        height="110em"
+        justifyContent="center"
+        alignItems={["flex-start", "flex-start", "center"]}
+        backgroundImage={oilImg}
+        backgroundSize="cover"
+      >
+        <Grid
+          as="form"
+          width="600px"
+          alignItems="center"
+          paddingX={[4, 4, 10, 10]}
+          paddingY={8}
+          marginX={[2, 2, 8, 8]}
+          marginTop={[10, 10, 0, 0]}
+          bgColor="rgba(254, 251, 251, 0.85)"
+          textAlign="center"
+        >
+          <VStack spacing="2">
+            <Heading as="h1">Cadastro do Comprador</Heading>
+
+            <Input
+              placeholder="João"
+              label="Nome"
+              error={errors.name}
+              {...register("name")}
+            />
+
+            <Input
+              placeholder="Americo da Silva Mello"
+              label="sobrenome"
+              error={errors.lastName}
+              {...register("lastName")}
+            />
+            <Input
+              placeholder="00.000.000/000-00"
+              label="CNPJ"
+              error={errors.CNPJ}
+              {...register("CNPJ")}
+            />
+            <Input
+              placeholder="João Americo da Silva Melo  - ME"
+              label="Razão Social"
+              error={errors.corporateName}
+              {...register("corporateName")}
+            />
+            <Input
+              placeholder="Big Tree Coleta"
+              label="Nome Fantasia"
+              error={errors.fantasyName}
+              {...register("fantasyName")}
+            />
+            <Input
+              placeholder="Av Brasil, 565"
+              label="Endereço"
+              error={errors.address}
+              {...register("address")}
+            />
+            <Input
+              placeholder="casa frente"
+              label="Complemento"
+              error={errors.complement}
+              {...register("complement")}
+            />
+            <Input
+              placeholder="Campinas"
+              label="Cidade"
+              error={errors.city}
+              {...register("city")}
+            />
+            <Input
+              placeholder="São Paulo"
+              label="Estado"
+              error={errors.state}
+              {...register("state")}
+            />
+            <Input
+              placeholder="90070-220"
+              label="CEP"
+              error={errors.CEP}
+              {...register("CEP")}
+            />
+            <Input
+              placeholder="(21) 98878-4006"
+              label="Contato"
+              error={errors.contact}
+              {...register("contact")}
+            />
+            <Input
+              placeholder="joh_melo@gmail.com"
+              label="Email"
+              type="email"
+              error={errors.email}
+              {...register("email")}
+            />
+            <Input
+              placeholder="Senha"
+              label="Senha"
+              type="password"
+              error={errors.password}
+              {...register("password")}
+            />
+            <Button type="submit" onClick={handleSubmit(subData)}>
+              Cadastro
+            </Button>
+          </VStack>
+        </Grid>
+      </Flex>
+    </>
   );
 };
 export default RegisterBuyer;
